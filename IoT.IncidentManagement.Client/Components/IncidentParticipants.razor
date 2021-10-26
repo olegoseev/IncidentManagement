@@ -1,0 +1,26 @@
+﻿<div class="container-flex">
+    @if (participants == null)
+    {
+        <Spinner></Spinner>
+    }
+    else
+    {
+       <div class="card">
+            <div class="card-header p-0 d-flex justify-content-between align-items-center">
+              <h5 class="card-header">Participants List</h5>
+              <span class="badge badge-btn me-3" data-bs-toggle="modal" data-bs-target="#Participant_ModalDialog">Edit</span>
+            </div>
+          <div class="card-body">
+            <div class="container">
+              <div class="row">
+                <textarea rows="2" readonly class="form-control bg-white">@participants.Group</textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ModalForm DialogId="Participant_ModalDialog" Title="Update Participants List" OnClose=@OnDialogClose ShowOkCancel="true" OkBtnTitle="Save">
+            <input type="text" class="form-control" @bind=participants.Group></input>
+        </ModalForm>
+    }
+</div>
+

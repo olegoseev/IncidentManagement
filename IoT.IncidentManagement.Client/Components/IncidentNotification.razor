@@ -1,0 +1,93 @@
+﻿@using IoT.IncidentManagement.ClientDomain.Enum
+
+<div class="card">
+    <h5 class="card-header">E2E Notification</h5>
+    <div class="card-body">
+        <div class="container">
+            <ul class="notify-group">
+
+                @if (notifications == null)
+                {
+                    <li class="notify-item d-flex justify-content-between align-items-center">No Notifications</li>
+                }
+                else
+                {
+                    @foreach (var notification in notifications)
+                    {
+                        var group = notification.Group;
+                        var type = notification.Type;
+                        var state = notification.State;
+                        var time = RemainingTime(notification.InitTime, notification.Interval);
+
+                        @switch (state)
+                        {
+                            case NotificationState.WAITING:
+                                <li class="notify-item active-action d-flex justify-content-between align-items-center"
+                    @onclick=@(() => OnItemClick(notification))>
+                                    @type&nbsp;&nbsp;@group<span class="badge badge-waiting fw-bold">@time</span>
+                                </li>
+                                break;
+                            case NotificationState.WARNING:
+                                <li class="notify-item active-action d-flex justify-content-between align-items-center item-warning"
+                    @onclick=@(() => OnItemClick(notification))>
+                                    @type&nbsp;&nbsp;@group<span class="badge badge-warning fw-bold">@time</span>
+                                </li>
+                                break;
+                            case NotificationState.ALARM:
+                                <li class="notify-item active-action list-group-item-danger d-flex justify-content-between align-items-center item-alarm"
+                    @onclick=@(() => OnItemClick(notification))>
+                                    @type&nbsp;&nbsp;@group<span class="badge badge-alarm fw-bold">@time</span>
+                                </li>
+                                break;
+                            case NotificationState.OFF:
+                                <li class="notify-item d-flex justify-content-between align-items-center text-muted">
+                                    @type&nbsp;&nbsp;@group<span class="badge badge-off fw-bold" aria-hidden="true">OK</span>
+                                </li>
+                                break;
+                            case NotificationState.INITIAL:
+                            default:
+                                <li class="notify-item d-flex justify-content-between align-items-center text-opacity-25">
+                                    @type&nbsp;&nbsp;@group
+                                </li>
+                                break;
+                        }
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+@if (showDialog)
+{
+    <div class="container shadow-lg p-3 mb-5 bg-body rounded">
+        <div class="modal fade show d-block" id="exampleModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <EditForm Model="@current">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="dialogLabel">@current.Type&nbsp;&nbsp;@current.Group</h5>
+                            <button type="button" class="btn-close bg-light" data-bs-dismiss="modal" aria-label="Close" @onclick="@(() => DialogButtonClick(false))"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container border border-1">
+                                <div class="form-check form-switch py-2">
+                                    <InputCheckbox class="form-check-input col-sm-3" id="repeatNotification"
+                                               type="checkbox" @bind-Value="@current.Repeat"></InputCheckbox>
+                                    <label class="form-check-label" for="repeatNotification">Additional notification required</label>
+                                </div>
+                            </div>
+                            <div class="container mt-2">
+                                <div class="row">
+                                    <div class="col d-flex justify-content-between align-items-center">
+                                        <button type="button" class="btn btn-sm btn-danger" @onclick="@(() => DialogButtonClick(true))">Notification Sent</button>
+                                        <button type="button" class="btn btn-sm btn-outline-danger" @onclick="@(() => DialogButtonClick(false))">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </EditForm>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,88 @@
+﻿<div class="card @CssClass">
+    <h5 class="card-header clock-title">@Title</h5>
+    <div class="clock_bg d-flex justify-content-center">
+        <div class="digital-watch m-3">
+            <svg width="0" height="0" viewBox="0 0 0 0">
+                <defs>
+                    <g id="unit-h">
+                        <path d="M0 20 L20 40 L180 40 L200 20 L180 0 L20 0 Z"></path>
+                    </g>
+                    <g id="unit-v">
+                        <path d="M20 0 L0 20 L0 180 L20 200 L40 180 L40 20 Z"></path>
+                    </g>
+                </defs>
+            </svg>
+            <div class="hour">
+                <svg id="@hourId1" class="@hour1" width="26" height="48" viewBox="0 0 320 592">
+                    <use xlink:href="#unit-h" class="segment a" x="30" y="0"></use>
+                    <use xlink:href="#unit-v" class="segment b" x="220" y="30"></use>
+                    <use xlink:href="#unit-v" class="segment c" x="220" y="250"></use>
+                    <use xlink:href="#unit-h" class="segment d" x="30" y="440"></use>
+                    <use xlink:href="#unit-v" class="segment e" x="0" y="250"></use>
+                    <use xlink:href="#unit-v" class="segment f" x="0" y="30"></use>
+                    <use xlink:href="#unit-h" class="segment g" x="30" y="220"></use>
+                </svg>
+                <svg id="@hourId2" class="@hour2" width="26" height="48" viewBox="0 0 320 592">
+                    <use xlink:href="#unit-h" class="segment a" x="30" y="0"></use>
+                    <use xlink:href="#unit-v" class="segment b" x="220" y="30"></use>
+                    <use xlink:href="#unit-v" class="segment c" x="220" y="250"></use>
+                    <use xlink:href="#unit-h" class="segment d" x="30" y="440"></use>
+                    <use xlink:href="#unit-v" class="segment e" x="0" y="250"></use>
+                    <use xlink:href="#unit-v" class="segment f" x="0" y="30"></use>
+                    <use xlink:href="#unit-h" class="segment g" x="30" y="220"></use>
+                </svg>
+            </div>
+            <div class="minute">
+                <svg id="@minuteId1" class="@minute1" width="26" height="48" viewBox="0 0 320 592">
+                    <use xlink:href="#unit-h" class="segment a" x="30" y="0"></use>
+                    <use xlink:href="#unit-v" class="segment b" x="220" y="30"></use>
+                    <use xlink:href="#unit-v" class="segment c" x="220" y="250"></use>
+                    <use xlink:href="#unit-h" class="segment d" x="30" y="440"></use>
+                    <use xlink:href="#unit-v" class="segment e" x="0" y="250"></use>
+                    <use xlink:href="#unit-v" class="segment f" x="0" y="30"></use>
+                    <use xlink:href="#unit-h" class="segment g" x="30" y="220"></use>
+                </svg>
+                <svg id="@minuteId2" class="@minute2" width="26" height="48" viewBox="0 0 320 592">
+                    <use xlink:href="#unit-h" class="segment a" x="30" y="0"></use>
+                    <use xlink:href="#unit-v" class="segment b" x="220" y="30"></use>
+                    <use xlink:href="#unit-v" class="segment c" x="220" y="250"></use>
+                    <use xlink:href="#unit-h" class="segment d" x="30" y="440"></use>
+                    <use xlink:href="#unit-v" class="segment e" x="0" y="250"></use>
+                    <use xlink:href="#unit-v" class="segment f" x="0" y="30"></use>
+                    <use xlink:href="#unit-h" class="segment g" x="30" y="220"></use>
+                </svg>
+            </div>
+            <div class="second">
+                <svg id="@secondId1" class="@second1" width="26" height="48" viewBox="0 0 380 702">
+                    <use xlink:href="#unit-h" class="segment a" x="30" y="0"></use>
+                    <use xlink:href="#unit-v" class="segment b" x="220" y="30"></use>
+                    <use xlink:href="#unit-v" class="segment c" x="220" y="250"></use>
+                    <use xlink:href="#unit-h" class="segment d" x="30" y="440"></use>
+                    <use xlink:href="#unit-v" class="segment e" x="0" y="250"></use>
+                    <use xlink:href="#unit-v" class="segment f" x="0" y="30"></use>
+                    <use xlink:href="#unit-h" class="segment g" x="30" y="220"></use>
+                </svg>
+                <svg id="@secondId2" class="@second2" width="26" height="48" viewBox="0 0 380 702">
+                    <use xlink:href="#unit-h" class="segment a" x="30" y="0"></use>
+                    <use xlink:href="#unit-v" class="segment b" x="220" y="30"></use>
+                    <use xlink:href="#unit-v" class="segment c" x="220" y="250"></use>
+                    <use xlink:href="#unit-h" class="segment d" x="30" y="440"></use>
+                    <use xlink:href="#unit-v" class="segment e" x="0" y="250"></use>
+                    <use xlink:href="#unit-v" class="segment f" x="0" y="30"></use>
+                    <use xlink:href="#unit-h" class="segment g" x="30" y="220"></use>
+                </svg>
+            </div>
+            <div class="ampm">
+                <svg id="@amId" class="@am" width="26" height="48" viewBox="0 0 520 962">
+                    <use xlink:href="#unit-h" class="segment a" x="30" y="0"></use>
+                    <use xlink:href="#unit-v" class="segment b" x="220" y="30"></use>
+                    <use xlink:href="#unit-v" class="segment c" x="220" y="250"></use>
+                    <use xlink:href="#unit-h" class="segment d" x="30" y="440"></use>
+                    <use xlink:href="#unit-v" class="segment e" x="0" y="250"></use>
+                    <use xlink:href="#unit-v" class="segment f" x="0" y="30"></use>
+                    <use xlink:href="#unit-h" class="segment g" x="30" y="220"></use>
+                </svg>
+            </div>
+        </div>
+    </div>
+</div>

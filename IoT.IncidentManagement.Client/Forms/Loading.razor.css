@@ -1,0 +1,46 @@
+﻿.loading-border {
+    border-radius: var(--border-radius)
+}
+
+.blink-text {
+    color: #000;
+    animation: blinkingText 2s infinite;
+}
+
+@keyframes blinkingText {
+    0% {
+        color: #fff;
+    }
+
+    12% {
+        color: var(--orange);
+    }
+
+    25% {
+        color: #fff;
+    }
+
+    38% {
+        color: var(--orange);
+    }
+
+    50% {
+        color: #fff;
+    }
+
+    63% {
+        color: var(--orange);
+    }
+
+    75% {
+        color: #fff;
+    }
+
+    88% {
+        color: var(--orange);
+    }
+
+    100% {
+        color: #fff;
+    }
+}

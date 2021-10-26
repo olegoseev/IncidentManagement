@@ -1,0 +1,45 @@
+﻿@page "/bridges"
+@using IoT.IncidentManagement.ClientApp.Features.Bridges.Commands.Get.List
+
+
+
+@inject IMediator MediatorService
+
+<h2>Bridgeslist</h2>
+
+<p>This component demonstrates fetching data from a service.</p>
+
+@if (bridges == null)
+{
+    <Spinner/>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var bridge in bridges)
+            {
+                <tr>
+                    <td>@bridge.Id</td>
+                    <td>@bridge.BridgeType</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    List<Bridge> bridges;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        bridges = (await MediatorService.Send(new GetBridgesListRequest())).ToList();
+    }
+}

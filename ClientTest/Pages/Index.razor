@@ -1,0 +1,97 @@
+﻿@page "/"
+@using IoT.IncidentManagement.ClientApp.Features.Incidents.Commands.Delete
+@using IoT.IncidentManagement.ClientApp.Features.Incidents.Commands.Get.List
+@using IoT.IncidentManagement.ClientDomain.Entities
+@using MediatR
+
+@if (incidents == null)
+{
+    <p>Loading....</p>
+}
+else
+{
+    <button class="btn btn-primary"  data-bs-toggle="modal" @onclick="@(() => OnClick())">Add</button>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Case</th>
+                <th>Severity</th>
+                <th>Bridge</th>
+                <th>Status</th>
+                <th>Action</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var incident in incidents)
+            {
+                <tr>
+                    <td>@incident.IncidentCase</td>
+                    <td>@incident.Severity.IncidentSeverity</td>
+                    <td>@incident.Bridge.BridgeType</td>
+                    <td>@incident.Status.CurrentStatus</td>
+                    <td><button class="btn btn-sm btn-danger" @onclick=@(() => OnClick(incident.Id))>Go</button></td>
+                    <td><button class="btn btn-sm btn-danger" @onclick=@(() => OnClickDelete(incident.Id))>Delete</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+    @if(ShowDialog)
+    {
+        @*<ModalForm></ModalForm>*@
+
+    }
+
+}
+
+@code {
+    List<Incident> incidents;
+
+    [Inject] IMediator MediatorService { get; set; }
+    [Inject] NavigationManager NavManager { get; set; }
+
+    Incident incident;
+
+
+
+    bool ShowDialog = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        incidents = (await MediatorService.Send(new GetIncidentListRequest())).ToList();
+        incident = incidents.FirstOrDefault();
+    }
+
+    private void OnClick(int id) => 
+        NavManager.NavigateTo($"/test/{id}", forceLoad: true);
+    
+
+    private async Task OnClickDelete(int id)
+    {
+        await MediatorService.Send(new DeleteIncidentRequest {IncidentId = id});
+        incidents = (await MediatorService.Send(new GetIncidentListRequest())).ToList();
+        StateHasChanged();
+    }
+
+
+    private async Task UpdateView()
+    {
+        incidents = (await MediatorService.Send(new GetIncidentListRequest())).ToList();
+    }
+
+    private void OnClick()
+    {
+        ShowDialog = true;
+        StateHasChanged();
+    }
+
+    private void Close()
+    {
+        ShowDialog = false;
+        StateHasChanged();
+    }
+}
+
+

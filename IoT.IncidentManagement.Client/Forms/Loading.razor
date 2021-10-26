@@ -1,0 +1,16 @@
+﻿@if (ShowLoading & !Disabled)
+{
+    <div class="list-group-item loading-border blink-text fw-bold fst-italic">L o a d i n g . . . .</div>
+}
+else
+{
+    @ChildContent
+}
+
+
+
+@code {
+    [Parameter] public bool Disabled { get; set; } = false;
+    [Parameter] public bool ShowLoading { get; set; }
+    [Parameter] public RenderFragment ChildContent { get; set; }
+}

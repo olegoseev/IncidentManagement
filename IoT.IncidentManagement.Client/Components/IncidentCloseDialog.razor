@@ -1,0 +1,95 @@
+﻿
+<ModalForm DialogId="@DialogId" Title="@Title" ShowOkCancel="false">
+    <div class="container-sm">
+        <EditForm EditContext="@editContext" OnValidSubmit="@HandleValidSubmit" OnInvalidSubmit="@HandleInvalidSubmit">
+            <div class="row d-flex justify-content-center">
+                <div class="col">
+                    <div class="mb-3 row form-group">
+                        <label for="inputCaseNumber" class="col-sm-3 col-form-label text-end fw-bold">Case Number</label>
+                        <div class="col-sm-6">
+                            <Loading ShowLoading="@contentIsLoading">
+                                <InputText type="text" class="form-control" id="inputCaseNumber" readonly
+                                           @bind-Value="@Incident.IncidentCase" placeholder="Enter case number"></InputText>
+                            </Loading>
+                        </div>
+                    </div>
+                    <div class="mb-3 row form-group">
+                        <label for="inputStartTime" class="col-sm-3 col-form-label text-end fw-bold">Start Time</label>
+                        <div class="col-sm-6">
+                            <InputDateTime class="form-control" id="inputStartTime" @bind-Value="@Incident.StartTime" readonly></InputDateTime>
+                            <ValidationMessage class="offset-sm-3 col-sm-8" For="(()=>Incident.StartTime)"></ValidationMessage>
+                        </div>
+                    </div>
+                    <div class="mb-3 row form-group">
+                        <label for="inputNotifiedTime" class="col-sm-3 col-form-label text-end fw-bold">Notified Time</label>
+                        <div class="col-sm-6">
+                            <InputDateTime id="inputNotifiedTime" class="form-control col-sm-8" @bind-Value="@Incident.NotifiedTime" readonly></InputDateTime>
+                            <ValidationMessage class="offset-sm-3 col-sm-8" For="(()=>Incident.NotifiedTime)"></ValidationMessage>
+                        </div>
+                    </div>
+                    <div class="mb-3 row form-group">
+                        <label for="endDate" class="col-sm-3 col-form-label text-end fw-bold">Resolved Time</label>
+                        <div class="col-sm-6">
+                            <InputDateTime id="endDate" class="form-control col-sm-8" @bind-Value="@Incident.EndTime"></InputDateTime>
+                            <ValidationMessage class="offset-sm-3 col-sm-8" For="(()=>Incident.EndTime)"></ValidationMessage>
+                        </div>
+                    </div>
+                    <div class="mb-3 row form-group">
+                        <label for="severitySelect" class="col-sm-3 col-form-label text-end fw-bold">Case Number</label>
+                        <div class="col-sm-6">
+                            <InputText type="text" class="form-control" id="severitySelect" readonly
+                                       @bind-Value="@Incident.Severity.IncidentSeverity"></InputText>
+                        </div>
+                    </div>
+                    <div class="mb-3 row form-group">
+                        <label for="severityBridge" class="col-sm-3 col-form-label text-end fw-bold">Case Number</label>
+                        <div class="col-sm-6">
+                            <InputText type="text" class="form-control" id="severityBridge" readonly
+                                       @bind-Value="@Incident.Bridge.BridgeType"></InputText>
+                        </div>
+                    </div>
+                    <div class="mb-3 row form-group">
+                        <label for="statusBridge" class="col-sm-3 col-form-label text-end fw-bold">Current Status</label>
+                        <div class="col-sm-6">
+                            <InputSelect id="statusSelect" class="form-select" @bind-Value="@Incident.Status.Id">
+                                <option value="0">Please select...</option>
+                                @foreach (var status in statuses)
+                                {
+                                    <option value="@status.Id">@status.CurrentStatus</option>
+                                }
+                            </InputSelect>
+                        </div>
+                    </div>
+                    <div class="mb-3 row form-group">
+                        <label for="inputDescription" class="col-sm-3 col-form-label text-end fw-bold">Short Description</label>
+                        <div class="col-sm-9">
+                            <InputTextArea rows="2" class="form-control" style="resize: none;" id="inputDescription"
+                                           @bind-Value="@Incident.Description"></InputTextArea>
+                        </div>
+                    </div>
+                    <div class="mb-3 row form-group">
+                        <label for="inputImpact" class="col-sm-3 col-form-label text-end fw-bold">Customer Impact</label>
+                        <div class="col-sm-9">
+                            <InputTextArea rows="2" class="form-control" style="resize: none;" id="inputImpact"
+                                           @bind-Value="@Incident.CustomerImpact"></InputTextArea>
+                        </div>
+                    </div>
+                    <div class="mb-3 row form-group">
+                        <label for="closureAction" class="col-sm-3 col-form-label text-end fw-bold">Closure Actions</label>
+                        <div class="col-sm-9">
+                            <InputTextArea rows="2" class="form-control" style="resize: none;" id="closureAction"
+                                           @bind-Value="@ClosureActions"></InputTextArea>
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row d-flex justify-content-end">
+                        <div class="col-sm-6 d-flex justify-content-between">
+                            <button type="submit" class="btn btn-wide btn-danger me-5" data-bs-dismiss="modal">@ButtonCaption</button>
+                            <button type="button" class="btn btn-width btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </EditForm>
+    </div>
+</ModalForm>

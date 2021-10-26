@@ -1,0 +1,43 @@
+﻿<div class="card">
+    @if (Incident == null)
+    {
+        <Spinner />
+    }
+    else
+    {
+        <h5 class="card-header">Incident Information</h5>
+        <div class="card-body">
+            <div class="d-grid incident-grid mt-3">
+                <div class="text-end pe-4 label border-bottom">Case number</div>
+                <div class="fw-bold value border-bottom">@Incident.IncidentCase</div>
+                <div class="text-end pe-4 label border-bottom">Start time</div>
+                <div class="fw-bold value border-bottom">@Incident.StartTime</div>
+                <div class="text-end pe-4 label border-bottom">End time</div>
+                <div class="fw-bold value border-bottom">@Incident.EndTime</div>
+                <div class="text-end pe-4 label border-bottom">Notified time</div>
+                <div class="fw-bold value border-bottom">@Incident.NotifiedTime</div>
+                <div class="text-end pe-4 label border-bottom">Severity</div>
+                <div class="fw-bold value border-bottom">@Incident.Severity.IncidentSeverity</div>
+                <div class="text-end pe-4 label border-bottom">Status</div>
+                <div class="fw-bold value border-bottom">@Incident.Status.CurrentStatus</div>
+                <div class="text-end pe-4 label border-bottom">Bridge</div>
+                <div class="fw-bold value border-bottom">@Incident.Bridge.BridgeType</div>
+                <div class="text-end pe-4 label border-bottom">Description</div>
+                <div class="text-wrap value text-truncate text-box-size border-bottom">@Incident.Description</div>
+                <div class="text-end pe-4 label border-bottom">Customer Impact</div>
+                <div class="text-wrap value text-truncate text-box-size border-bottom">@Incident.CustomerImpact</div>
+
+                <IncidentUpdateDialog DialogId="incidnet_update_dialog" Title="Edit Incident" OnClose="@(() => OnDialogClose())"
+                                  ButtonCaption="Update" Incident=@Incident></IncidentUpdateDialog>
+                <IncidentCloseDialog DialogId="incident_close_dialog" Title="Close Incident" OnClose="@(() => OnDialogClose())"
+                                 ButtonCaption="Close Incident" Incident=@Incident></IncidentCloseDialog>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="d-flex justify-content-between align-items-center">
+                <button class="btn btn-sm btn-resolve btn-width" type="button" data-bs-toggle="modal" data-bs-target="#incident_close_dialog">Close Incident</button>
+                <button class="btn btn-sm btn-danger btn-width" type="button" data-bs-toggle="modal" data-bs-target="#incidnet_update_dialog">Edit</button>
+            </div>
+        </div>
+    }
+</div>

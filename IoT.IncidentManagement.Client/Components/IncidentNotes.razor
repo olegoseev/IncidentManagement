@@ -1,0 +1,28 @@
+﻿<div class="card">
+    <h5 class="card-header">Incident Notes</h5>
+    <div class="card-body">
+        <div id="notebox" class="note-items">
+            @if(notes == null)
+            {
+                <Spinner></Spinner>           
+            }
+            else
+            {
+                    
+                @foreach(var note in notes)
+                {
+                  <div class="row text-wrap note-item"><span><em>@note.RecordTime</em></span>@note.Record</div> 
+                }
+            }
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="input-group ">
+            <textarea class="form-control" aria-label="Notes" @bind="@note" @bind:event="oninput" placeholder="Add notes here" @onkeydown=@OnKeyDown></textarea>
+        </div>
+        <div class="col d-flex justify-content-end">
+            <button class="btn btn-sm btn-danger my-2 btn-width" type="submit"
+                    @onclick=@Submit>Post</button>
+        </div>
+    </div>
+</div>

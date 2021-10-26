@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IoT.IncidentManagement.ClientApp\IoT.IncidentManagement.ClientApp.csproj" />
+    <ProjectReference Include="..\IoT.IncidentManagement.ClientServices\IoT.IncidentManagement.ClientServices.csproj" />
+    <ProjectReference Include="..\IoT.IncidentManagement.NotificationStateService\IoT.IncidentManagement.NotificationStateService.csproj" />
+  </ItemGroup>
+
+</Project>

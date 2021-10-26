@@ -1,0 +1,38 @@
+﻿
+
+.incident-grid {
+    grid-template-columns: fit-content(140px) 1fr;
+    row-gap: 1rem;
+}
+
+    .incident-grid .description {
+        grid-column: 1 / 3;
+    }
+
+    .incident-grid .impact {
+        grid-column: 1 / 3;
+    }
+
+    .incident-grid .label {
+        grid-column: 1;
+    }
+
+    .incident-grid .value {
+        grid-column: 2;
+    }
+
+
+.btn-resolve {
+    background-color: var(--dark-button);
+    color: #fff;
+}
+
+    .btn-resolve:hover {
+        background-color: #646e86;
+    }
+
+.text-box-size {
+    height: 90px;
+    line-height: 1.2rem;
+    overflow-y: auto;
+}

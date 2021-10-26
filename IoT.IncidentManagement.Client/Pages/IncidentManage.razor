@@ -1,0 +1,33 @@
+﻿@page "/manage/{IncidentId:int}"
+
+
+<div class="container-fluid pb-3 text-nowrap">
+    <div class="d-grid gap-3 main-grid">
+        <!-- Incident Information -->
+        <section class="border-0 rounded-3 infobox">
+             <IncidentInformation IncidentId=@IncidentId OnInformationUpdate=@InformationUpdated></IncidentInformation>
+        </section>
+        <!-- Manager steps -->
+        <section class="border-0 rounded-3 trackbox">
+            <IncidentMonitoring></IncidentMonitoring>
+        </section>
+        <!-- Incident notes -->
+        <section class="border-0 rounded-3 notebox">
+             <IncidentNotes IncidentId=@IncidentId></IncidentNotes>
+        </section>
+        <!-- Clock -->
+        <section class="border-0 rounded-3 clockbox">
+            <div class="d-grid clock-grid">
+                <DigitalClock CssClass="clock-local" Id="L"></DigitalClock>
+                <DigitalClock CssClass="clock-utc" Id="U" Title="UTC" UTC="true"></DigitalClock>
+            </div>
+        </section>
+        <!-- E2E Notification-->
+        <section class="bg-light border-0 rounded-3 notifybox">
+            <IncidentNotification @ref=notificationDialog IncidentId=@IncidentId></IncidentNotification>
+        </section>
+        <section class="border-0 rounded-3 participantbox">
+            <IncidentParticipants IncidentId=@IncidentId></IncidentParticipants>
+        </section>
+    </div>
+</div>

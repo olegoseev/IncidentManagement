@@ -1,0 +1,11 @@
+﻿.modal-header {
+    background-color: var(--card-header);
+    padding-bottom: 6px;
+    padding-top: 6px;
+    color: var(--card-header-text);
+}
+
+.btn-close {
+    color: var(--card-header-text);
+    background-color: var(--card-header-text);
+}

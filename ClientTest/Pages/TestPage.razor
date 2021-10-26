@@ -1,0 +1,178 @@
+﻿@page "/test/{IncidentId:int}"
+@using AutoMapper
+@using IoT.IncidentManagement.ClientApp.Features.Incidents.Commands.Get
+@using IoT.IncidentManagement.ClientApp.Features.Notifications.Get.List
+@using IoT.IncidentManagement.ClientApp.Features.Notifications.Update
+@using IoT.IncidentManagement.ClientDomain.Entities
+@using IoT.IncidentManagement.ClientDomain.Enum
+@using IoT.IncidentManagement.NotificationStateService.Services.NotificationMachine
+@using MediatR
+@using System.Text
+
+
+<h1>Hello, this is a test page.</h1>
+
+<textarea rows="10" class="form-control" style="resize: none;" value=@log></textarea>
+
+<div class="card">
+    <h5 class="card-header">E2E Notification</h5>
+    <div class="card-body">
+        <div class="container">
+            <ul class="notify-group">
+
+                @if (notifications == null)
+                {
+                    <li class="notify-item d-flex justify-content-between align-items-center">No Notifications</li>
+                }
+                else
+                {
+                    @foreach (var notification in notifications)
+                    {
+                        var group = notification.Group;
+                        var type = notification.Type;
+                        var state = notification.State;
+                        var time = RemainingTime(notification.InitTime ?? DateTime.UtcNow, notification.Interval);
+
+                        @switch (state)
+                        {
+                            case NotificationState.WAITING:
+                                <li class="notify-item active-action d-flex justify-content-between align-items-center"
+                    @onclick=@(() => OnItemClick(notification))>
+                                    @type&nbsp;&nbsp;@group&nbsp;@state<span class="badge badge-waiting">@time</span>
+                                </li>
+                                break;
+                            case NotificationState.WARNING:
+                                <li class="notify-item active-action d-flex justify-content-between align-items-center"
+                    @onclick=@(() => OnItemClick(notification))>
+                                    @type&nbsp;&nbsp;@group&nbsp;@state<span class="badge badge-warning">@time</span>
+                                </li>
+                                break;
+                            case NotificationState.ALARM:
+                                <li class="notify-item active-action list-group-item-danger d-flex justify-content-between align-items-center"
+                    @onclick=@(() => OnItemClick(notification))>
+                                    @type&nbsp;&nbsp;@group&nbsp;@state<span class="badge badge-alarm">@time</span>
+                                </li>
+                                break;
+                            case NotificationState.OFF:
+                                <li class="notify-item d-flex justify-content-between align-items-center">
+                                    @type&nbsp;&nbsp;@group&nbsp;@state<span class="badge badge-off oi oi-circle-check">OK</span>
+                                </li>
+                                break;
+                            case NotificationState.INITIAL:
+                            default:
+                                <li class="notify-item d-flex justify-content-between align-items-center">
+                                    @type&nbsp;&nbsp;@group&nbsp;@state
+                                </li>
+                                break;
+                        }
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+@code {
+
+    #region Injected services
+    [Inject] public IMediator Mediator { get; set; }
+    [Inject] public IMapper Mapper { get; set; }
+    [Inject] public IRxMachine Machine { get; set; }
+    #endregion
+
+    #region Parameters
+    [Parameter] public int IncidentId { get; set; }
+    #endregion
+
+    #region Private fields
+    //private static readonly string EXTERNAL = "external";
+    //private static readonly string INTERNAL = "internal";
+    //private static readonly int WAITING_THRESHOLD = 8;
+
+    private IEnumerable<Notification> notifications;
+    private Incident incident;
+    private IDisposable subscription;
+    private bool showDialog = false;
+
+    private StringBuilder log = new();
+
+    #endregion
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadNotificationsAsync(IncidentId);
+        await LoadIncidentInformation(IncidentId);
+        if(notifications is not null && incident is not null)
+        {
+            if(Machine.IsMachineRunning(incident.IncidentCase + NotificationGroup.EXTERNAL) || 
+               Machine.IsMachineRunning(incident.IncidentCase + NotificationGroup.INTERNAL))
+            {
+                subscription = Machine.Subscribe(OnUpdateReceived);
+            }
+        }
+    }
+
+    private void OnUpdateReceived(Notification item)
+    {
+        if(item is not null && incident is not null)
+        {
+            if(item.IncidentId == incident.Id)
+            {
+                log.AppendLine($"{item.Group} {item.Type} {item.State}");
+                InvokeAsync(UpdateInformation);
+            }
+        }
+    }
+
+    private async Task UpdateInformation()
+    {
+        await LoadNotificationsAsync(IncidentId);
+        var isActive = notifications.Any(n => n.State != NotificationState.OFF);
+        if(isActive is false)
+        {
+            subscription.Dispose();
+        }
+        StateHasChanged();
+    }
+
+
+    private async Task LoadIncidentInformation(int id)
+    {
+        incident = await Mediator.Send(new GetIncidentDetailRequest {IncidentId = id });
+    }
+
+    private async Task LoadNotificationsAsync(int id)
+    {
+        notifications = await Mediator.Send(new GetIncidentNotificationsListRequest { IncidentId = id });
+    }
+
+    private async Task OnItemClick(Notification item)
+    {
+        if (item is not null)
+        {
+            item.State = NotificationState.OFF;
+            item.SentTime = DateTime.UtcNow;
+            item.Repeat = false;
+            var request = Mapper.Map<UpdateNotificationRequest>(item);
+            await Mediator.Send(request);
+            showDialog = true;
+            StateHasChanged();
+        }
+    }
+
+    #region Support function
+    private static int RemainingTime(DateTime timeInit, int interval)
+    {
+        var passed = (int)DateTime.UtcNow.Subtract(timeInit).TotalMinutes;
+        return interval - passed;
+    }
+
+    public void Dispose()
+    {
+        subscription?.Dispose();
+    }
+    #endregion
+
+}

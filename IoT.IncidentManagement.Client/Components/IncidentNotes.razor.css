@@ -1,0 +1,34 @@
+﻿
+textarea {
+    resize: none;
+    border-radius: var(--border-radius);
+}
+
+span {
+    font-size: .7em;
+    font-weight: bold;
+}
+
+#notebox {
+    position: absolute;
+    height: 98%;
+    scroll-behavior: auto;
+    overflow-y: auto;
+}
+
+.note-items {
+    margin: 0;
+    padding: 0;
+}
+
+.note-items .note-item {
+    border: 1px solid var(--bg-color);
+    border-radius: var(--border-radius);
+    padding: 8px;
+    margin: 0;
+}
+
+.note-items .note-item:hover {
+    border: 1px solid var(--border-muted);
+}
+
