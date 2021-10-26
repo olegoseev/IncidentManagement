@@ -5,13 +5,20 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\IoT.IncidentManagement.ClientApp\IoT.IncidentManagement.ClientApp.csproj" />
-    <ProjectReference Include="..\IoT.IncidentManagement.ClientServices\IoT.IncidentManagement.ClientServices.csproj" />
-    <ProjectReference Include="..\IoT.IncidentManagement.NotificationStateService\IoT.IncidentManagement.NotificationStateService.csproj" />
+    <Compile Remove="Pages\StateMachine\**" />
+    <Content Remove="Pages\StateMachine\**" />
+    <EmbeddedResource Remove="Pages\StateMachine\**" />
+    <None Remove="Pages\StateMachine\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\StateMachine\" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IoT.IncidentManagement.ClientApp\IoT.IncidentManagement.ClientApp.csproj" />
+    <ProjectReference Include="..\IoT.IncidentManagement.ClientServices\IoT.IncidentManagement.ClientServices.csproj" />
+    <ProjectReference Include="..\IoT.IncidentManagement.NotificationStateService\IoT.IncidentManagement.NotificationStateService.csproj" />
   </ItemGroup>
 
 </Project>
