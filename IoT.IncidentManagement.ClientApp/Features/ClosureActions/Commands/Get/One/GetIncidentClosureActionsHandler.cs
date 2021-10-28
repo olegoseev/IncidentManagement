@@ -13,7 +13,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace IoT.IncidentManagement.ClientApp.Features.ClosureActions.Commands.Get
+namespace IoT.IncidentManagement.ClientApp.Features.ClosureActions.Commands.Get.One
 {
     public class GetIncidentClosureActionsHandler : IRequestHandler<GetIncidentClosureActionsRequest, ClosureAction>
     {

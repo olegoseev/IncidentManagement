@@ -6,5 +6,6 @@ namespace IoT.IncidentManagement.Application.Contracts.Persistence
 {
     public interface IClosureActionRepository : IAppRepository<ClosureAction>
     {
+        public Task<bool> ClosureActionExists(int incidentId);
     }
 }

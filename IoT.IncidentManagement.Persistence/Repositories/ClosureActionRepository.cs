@@ -13,5 +13,10 @@ namespace IoT.IncidentManagement.Persistence.Repositories
         public ClosureActionRepository(IncidentManagementDbContext dbContext) : base(dbContext)
         {
         }
+
+        public Task<bool> ClosureActionExists(int incidentId)
+        {
+            return dbContext.ClosureActions.AnyAsync(x => x.IncidentId == incidentId);
+        }
     }
 }

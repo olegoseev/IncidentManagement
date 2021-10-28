@@ -20,7 +20,7 @@ namespace IoT.IncidentManagement.Application.UnitTests.ClosureActions.Get
         public async Task Handle_GetActionsListTest()
         {
             var _mockActionRepository = RepositoryMocks.GetClosureActionRepository();
-            var handler = new GetActionsListHandler(_mockActionRepository, _mapper);
+            var handler = new GetClosureActionsListHandler(_mockActionRepository, _mapper);
             var result = await handler.Handle(new GetClosureActionsListRequest(), CancellationToken.None);
 
             Assert.IsType<List<ClosureActionDto>>(result);
@@ -31,7 +31,7 @@ namespace IoT.IncidentManagement.Application.UnitTests.ClosureActions.Get
         public void Handle_BadRequest()
         {
             var _mockActionRepository = RepositoryMocks.GetClosureActionRepository();
-            var handler = new GetActionsListHandler(_mockActionRepository, _mapper);
+            var handler = new GetClosureActionsListHandler(_mockActionRepository, _mapper);
 
             Assert.ThrowsAsync<BadRequestException>(() => handler.Handle(null, CancellationToken.None));
         }

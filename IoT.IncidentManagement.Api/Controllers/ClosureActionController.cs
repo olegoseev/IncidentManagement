@@ -2,6 +2,7 @@
 using IoT.IncidentManagement.Application.Features.ClosureActions.Commands.Delete;
 using IoT.IncidentManagement.Application.Features.ClosureActions.Commands.Get.Details;
 using IoT.IncidentManagement.Application.Features.ClosureActions.Commands.Get.List;
+using IoT.IncidentManagement.Application.Features.ClosureActions.Commands.Get.Status;
 using IoT.IncidentManagement.Application.Features.ClosureActions.Commands.Update;
 using IoT.IncidentManagement.Application.Models;
 
@@ -43,6 +44,16 @@ namespace IoT.IncidentManagement.Api.Controllers
         {
             var dto = await mediator.Send(new GetClosureActionDetailsRequest { Id = id });
             return Ok(dto);
+        }
+
+
+        [HttpGet("{id}/status", Name = "GetActionStatus")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<bool>> GetActionStatus(int id)
+        {
+            var status = await mediator.Send(new GetClosureActionStatusRequest { IncidentId = id });
+            return Ok(status);
         }
 
 

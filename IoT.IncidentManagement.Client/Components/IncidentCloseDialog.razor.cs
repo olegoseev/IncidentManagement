@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
 
 using IoT.IncidentManagement.ClientApp.Features.ClosureActions.Commands.Create;
-using IoT.IncidentManagement.ClientApp.Features.ClosureActions.Commands.Get;
+using IoT.IncidentManagement.ClientApp.Features.ClosureActions.Commands.Get.One;
+using IoT.IncidentManagement.ClientApp.Features.ClosureActions.Commands.Get.Status;
 using IoT.IncidentManagement.ClientApp.Features.ClosureActions.Commands.Update;
 using IoT.IncidentManagement.ClientApp.Features.Incidents.Commands.Update;
 using IoT.IncidentManagement.ClientApp.Features.Statuses.Commands.Get;
@@ -39,7 +40,7 @@ namespace IoT.IncidentManagement.Client.Components
         private EditContext editContext;
         private ClosureAction closureActions = new ClosureAction { ToDoList = string.Empty };
         private bool contentIsLoading = false;
-        private bool updateActions = false;
+        private bool hasActions = false;
         #endregion
 
         private async Task HandleValidSubmit()
@@ -47,7 +48,7 @@ namespace IoT.IncidentManagement.Client.Components
             // update existing incident
             var request = Mapper.Map<UpdateIncidentRequest>(Incident);
             await Mediator.Send(request);
-            if(updateActions is true)
+            if (hasActions is true)
             {
                 await Mediator.Send(new UpdateIncidentClosureActionsRequest { IncidentId = Incident.Id, ToDoList = closureActions.ToDoList });
             }
@@ -68,14 +69,22 @@ namespace IoT.IncidentManagement.Client.Components
             incident.EndTime = System.DateTime.UtcNow;
             editContext = new EditContext(incident);
             await LoadStatusInformationAsync();
-            await LoadClosureActionsInformation();
-            updateActions = closureActions is null ? false : true;
-            closureActions = new ClosureAction { ToDoList = string.Empty }; 
+
+            hasActions = await Mediator.Send(new GetIncidentClosureActionStatusRequest { IncidentId = incident.Id });
+
+            if(hasActions is true)
+            {
+                await LoadClosureActionsInformation();
+            }
+            else
+            {
+                closureActions = new ClosureAction { ToDoList = string.Empty };
+            }
         }
 
         private async Task LoadClosureActionsInformation()
         {
-            closureActions = await Mediator.Send(new GetIncidentClosureActionsRequest { IncidentId = incident.Id});
+            closureActions = await Mediator.Send(new GetIncidentClosureActionsRequest { IncidentId = incident.Id });
         }
 
 

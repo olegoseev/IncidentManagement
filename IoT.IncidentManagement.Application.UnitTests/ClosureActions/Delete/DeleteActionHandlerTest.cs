@@ -42,7 +42,7 @@ namespace IoT.IncidentManagement.Application.UnitTests.ClosureActions.Delete
             var handler = new DeleteClosureActionHandler(_mockActionRepository);
             await handler.Handle(new DeleteClosureActionRequest { Id = 1 }, CancellationToken.None);
 
-            var getHandler = new GetActionsListHandler(_mockActionRepository, _mapper);
+            var getHandler = new GetClosureActionsListHandler(_mockActionRepository, _mapper);
             var result = await getHandler.Handle(new GetClosureActionsListRequest(), CancellationToken.None);
 
             Assert.Equal(5, result.Count);

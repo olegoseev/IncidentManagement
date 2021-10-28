@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IoT.IncidentManagement.ClientApp.Features.ClosureActions.Commands.Get
+namespace IoT.IncidentManagement.ClientApp.Features.ClosureActions.Commands.Get.One
 {
     public class GetIncidentClosureActionsRequest : IRequest<ClosureAction>
     {

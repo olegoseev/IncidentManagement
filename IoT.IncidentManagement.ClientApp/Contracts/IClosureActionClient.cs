@@ -14,6 +14,7 @@ namespace IoT.IncidentManagement.ClientApp.Contracts
     {
         public Task<ClosureAction> AddClosureActionAsync(ClosureActionDto dto, CancellationToken cancellationToken);
         public Task UpdateClosureActionAsync(ClosureActionDto dto, CancellationToken cancellationToken);
-        public Task<ClosureActionDto> GetClosureActionAsync(int IncidentId, CancellationToken cancellationToken);
+        public Task<ClosureActionDto> GetClosureActionAsync(int incidentId, CancellationToken cancellationToken);
+        public Task<bool> ClosureActionsExistAsync(int incidentId, CancellationToken cancellationToken);
     }
 }
