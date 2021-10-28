@@ -72,6 +72,7 @@ namespace IoT.IncidentManagement.Persistence.Context
             int StatusId1 = 1;
             int StatusId2 = 2;
             int StatusId3 = 3;
+            int StatusId4 = 4;
             int SeverityId1 = 1;
             int SeverityId2 = 2;
             int SeverityId3 = 3;
@@ -132,6 +133,15 @@ namespace IoT.IncidentManagement.Persistence.Context
                 {
                     Id = StatusId3,
                     CurrentStatus = "Postponed",
+                    CreatedDate = DateTime.UtcNow,
+                    LastModifiedDate = DateTime.UtcNow,
+                    CreatedBy = "Initial Migration",
+                    LastModifiedBy = "Initial Migration"
+                },
+                new Status
+                {
+                    Id = StatusId4,
+                    CurrentStatus = "Closed",
                     CreatedDate = DateTime.UtcNow,
                     LastModifiedDate = DateTime.UtcNow,
                     CreatedBy = "Initial Migration",
@@ -245,7 +255,7 @@ namespace IoT.IncidentManagement.Persistence.Context
                 Group = NotificationGroup.INTERNAL,
                 State = NotificationState.INITIAL,
                 Repeat = false,
-                 Interval = 15,
+                Interval = 15,
             },
             new NotificationStore
             {
@@ -255,7 +265,7 @@ namespace IoT.IncidentManagement.Persistence.Context
                 Group = NotificationGroup.INTERNAL,
                 State = NotificationState.INITIAL,
                 Repeat = true,
-                 Interval = 15,
+                Interval = 15,
             },
             new NotificationStore
             {

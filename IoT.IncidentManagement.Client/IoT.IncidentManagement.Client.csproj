@@ -5,13 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Pages\StateMachine\**" />
-    <Content Remove="Pages\StateMachine\**" />
-    <EmbeddedResource Remove="Pages\StateMachine\**" />
-    <None Remove="Pages\StateMachine\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
   </ItemGroup>
 

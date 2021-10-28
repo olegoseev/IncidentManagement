@@ -19,11 +19,11 @@ namespace IoT.IncidentManagement.Api.Controllers
     [ApiController]
     public class ClosureActionController : ControllerBase
     {
-        private readonly IMediator _mediator;
+        private readonly IMediator mediator;
 
         public ClosureActionController(IMediator mediator)
         {
-            _mediator = mediator;
+            this.mediator = mediator;
         }
 
         [HttpGet("all", Name = "GetAllActions")]
@@ -31,7 +31,7 @@ namespace IoT.IncidentManagement.Api.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<IEnumerable<ClosureActionDto>>> GetAll()
         {
-            var dto = await _mediator.Send(new GetClosureActionsListRequest());
+            var dto = await mediator.Send(new GetClosureActionsListRequest());
             return Ok(dto);
         }
 
@@ -41,7 +41,7 @@ namespace IoT.IncidentManagement.Api.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<IEnumerable<ClosureActionDto>>> GetDetails(int id)
         {
-            var dto = await _mediator.Send(new GetClosureActionDetailsRequest { Id = id });
+            var dto = await mediator.Send(new GetClosureActionDetailsRequest { Id = id });
             return Ok(dto);
         }
 
@@ -52,7 +52,7 @@ namespace IoT.IncidentManagement.Api.Controllers
         [ProducesDefaultResponseType]
         public async Task<ActionResult> Create([FromBody] CreateClosureActionRequest createActionRequest)
         {
-            var dto = await _mediator.Send(createActionRequest);
+            var dto = await mediator.Send(createActionRequest);
             return CreatedAtAction(nameof(GetDetails), new { id = dto.IncidentId }, dto);
         }
 
@@ -64,7 +64,7 @@ namespace IoT.IncidentManagement.Api.Controllers
         [ProducesDefaultResponseType]
         public async Task<ActionResult> Update([FromBody] UpdateClosureActionRequest updateActionRequest)
         {
-            await _mediator.Send(updateActionRequest);
+            await mediator.Send(updateActionRequest);
             return NoContent();
         }
 
@@ -76,7 +76,7 @@ namespace IoT.IncidentManagement.Api.Controllers
         [ProducesDefaultResponseType]
         public async Task<ActionResult> Delete(int id)
         {
-            await _mediator.Send(new DeleteClosureActionRequest { Id = id });
+            await mediator.Send(new DeleteClosureActionRequest { Id = id });
             return NoContent();
         }
     }

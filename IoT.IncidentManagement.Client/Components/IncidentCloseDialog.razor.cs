@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 
 using IoT.IncidentManagement.ClientApp.Features.ClosureActions.Commands.Create;
+using IoT.IncidentManagement.ClientApp.Features.ClosureActions.Commands.Get;
+using IoT.IncidentManagement.ClientApp.Features.ClosureActions.Commands.Update;
 using IoT.IncidentManagement.ClientApp.Features.Incidents.Commands.Update;
 using IoT.IncidentManagement.ClientApp.Features.Statuses.Commands.Get;
 using IoT.IncidentManagement.ClientDomain.Entities;
@@ -19,7 +21,7 @@ namespace IoT.IncidentManagement.Client.Components
     {
         #region Inject
         [Inject] public IMapper Mapper { get; set; }
-        [Inject] public IMediator MediatorService { get; set; }
+        [Inject] public IMediator Mediator { get; set; }
         #endregion
 
         #region Parameters
@@ -32,18 +34,27 @@ namespace IoT.IncidentManagement.Client.Components
         #endregion
 
         #region Private fields
+        private Incident incident;
         private IEnumerable<Status> statuses = new List<Status>();
         private EditContext editContext;
+        private ClosureAction closureActions = new ClosureAction { ToDoList = string.Empty };
         private bool contentIsLoading = false;
-        private string ClosureActions = string.Empty;
+        private bool updateActions = false;
         #endregion
 
         private async Task HandleValidSubmit()
         {
             // update existing incident
             var request = Mapper.Map<UpdateIncidentRequest>(Incident);
-            await MediatorService.Send(request);
-            await MediatorService.Send(new CreateIncidentClosureActionsRequest { IncidentId = Incident.Id, ToDoList = ClosureActions });
+            await Mediator.Send(request);
+            if(updateActions is true)
+            {
+                await Mediator.Send(new UpdateIncidentClosureActionsRequest { IncidentId = Incident.Id, ToDoList = closureActions.ToDoList });
+            }
+            else
+            {
+                await Mediator.Send(new CreateIncidentClosureActionsRequest { IncidentId = Incident.Id, ToDoList = closureActions.ToDoList });
+            }
             await OnClose.InvokeAsync();
         }
 
@@ -53,13 +64,24 @@ namespace IoT.IncidentManagement.Client.Components
         }
         protected override async Task OnInitializedAsync()
         {
-            editContext = new EditContext(Incident);
+            incident = Mapper.Map<Incident>(Incident);
+            incident.EndTime = System.DateTime.UtcNow;
+            editContext = new EditContext(incident);
             await LoadStatusInformationAsync();
+            await LoadClosureActionsInformation();
+            updateActions = closureActions is null ? false : true;
+            closureActions = new ClosureAction { ToDoList = string.Empty }; 
         }
+
+        private async Task LoadClosureActionsInformation()
+        {
+            closureActions = await Mediator.Send(new GetIncidentClosureActionsRequest { IncidentId = incident.Id});
+        }
+
 
         private async Task LoadStatusInformationAsync()
         {
-            statuses = await MediatorService.Send(new GetStatusListRequest());
+            statuses = await Mediator.Send(new GetStatusListRequest());
         }
     }
 }

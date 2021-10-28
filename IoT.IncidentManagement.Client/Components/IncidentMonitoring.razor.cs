@@ -49,8 +49,17 @@ namespace IoT.IncidentManagement.Client.Components
 
         public void Dispose()
         {
-            timer?.Stop();
-            timer?.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                timer?.Stop();
+                timer?.Dispose();
+            }
         }
     }
 }

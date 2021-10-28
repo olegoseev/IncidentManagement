@@ -46,6 +46,7 @@ namespace IoT.IncidentManagement.Client.Components
         private IEnumerable<Status> statuses = new List<Status>();
         private IEnumerable<Bridge> bridges = new List<Bridge>();
         private EditContext editContext;
+        private Incident incident;
         private EnabledNotificationTypes notificationTypes = new() { ExternalNotificationEnabled = false, InternalNotificationEnabled = false };
         private bool addExternalNotifications = false;
         private bool addInternalNotifications = false;
@@ -130,7 +131,8 @@ namespace IoT.IncidentManagement.Client.Components
         #region Initializers
         protected override async Task OnInitializedAsync()
         {
-            editContext = new EditContext(Incident);
+            incident = Mapper.Map<Incident>(Incident);
+            editContext = new EditContext(incident);
             contentIsLoading = true;
             await LoadEnabledNotificationTypes();
             await LoadStatusInformationAsync();

@@ -280,12 +280,12 @@ namespace IoT.IncidentManagement.Persistence.Migrations
                 columns: new[] { "Id", "CreatedBy", "CreatedDate", "Description", "InitTime", "Interval", "LastModifiedBy", "LastModifiedDate", "Order", "Repeat", "State" },
                 values: new object[,]
                 {
-                    { 1, null, null, "Action 1", new DateTime(2021, 10, 19, 5, 12, 42, 685, DateTimeKind.Utc).AddTicks(3288), 15, null, null, 1, false, "INITIAL" },
-                    { 2, null, null, "Action 2", new DateTime(2021, 10, 19, 5, 12, 42, 685, DateTimeKind.Utc).AddTicks(3532), 15, null, null, 2, false, "INITIAL" },
-                    { 3, null, null, "Action 3", new DateTime(2021, 10, 19, 5, 12, 42, 685, DateTimeKind.Utc).AddTicks(3534), 15, null, null, 3, true, "INITIAL" },
-                    { 4, null, null, "Action 4", new DateTime(2021, 10, 19, 5, 12, 42, 685, DateTimeKind.Utc).AddTicks(3535), 15, null, null, 4, true, "INITIAL" },
-                    { 5, null, null, "Action 5", new DateTime(2021, 10, 19, 5, 12, 42, 685, DateTimeKind.Utc).AddTicks(3536), 15, null, null, 5, true, "INITIAL" },
-                    { 6, null, null, "Action 6", new DateTime(2021, 10, 19, 5, 12, 42, 685, DateTimeKind.Utc).AddTicks(3537), 15, null, null, 6, false, "INITIAL" }
+                    { 1, null, null, "Action 1", new DateTime(2021, 10, 28, 4, 25, 37, 979, DateTimeKind.Utc).AddTicks(1468), 15, null, null, 1, false, "INITIAL" },
+                    { 2, null, null, "Action 2", new DateTime(2021, 10, 28, 4, 25, 37, 979, DateTimeKind.Utc).AddTicks(1704), 15, null, null, 2, false, "INITIAL" },
+                    { 3, null, null, "Action 3", new DateTime(2021, 10, 28, 4, 25, 37, 979, DateTimeKind.Utc).AddTicks(1706), 15, null, null, 3, true, "INITIAL" },
+                    { 4, null, null, "Action 4", new DateTime(2021, 10, 28, 4, 25, 37, 979, DateTimeKind.Utc).AddTicks(1707), 15, null, null, 4, true, "INITIAL" },
+                    { 5, null, null, "Action 5", new DateTime(2021, 10, 28, 4, 25, 37, 979, DateTimeKind.Utc).AddTicks(1708), 15, null, null, 5, true, "INITIAL" },
+                    { 6, null, null, "Action 6", new DateTime(2021, 10, 28, 4, 25, 37, 979, DateTimeKind.Utc).AddTicks(1709), 15, null, null, 6, false, "INITIAL" }
                 });
 
             migrationBuilder.InsertData(
@@ -293,9 +293,9 @@ namespace IoT.IncidentManagement.Persistence.Migrations
                 columns: new[] { "Id", "BridgeType", "CreatedBy", "CreatedDate", "LastModifiedBy", "LastModifiedDate" },
                 values: new object[,]
                 {
-                    { 1, "IoT TS", "Initial Migration", new DateTime(2021, 10, 19, 5, 12, 42, 684, DateTimeKind.Utc).AddTicks(1242), "Initial Migration", new DateTime(2021, 10, 19, 5, 12, 42, 684, DateTimeKind.Utc).AddTicks(1842) },
-                    { 2, "CMD", "Initial Migration", new DateTime(2021, 10, 19, 5, 12, 42, 684, DateTimeKind.Utc).AddTicks(2538), "Initial Migration", new DateTime(2021, 10, 19, 5, 12, 42, 684, DateTimeKind.Utc).AddTicks(2540) },
-                    { 3, "NOC", "Initial Migration", new DateTime(2021, 10, 19, 5, 12, 42, 684, DateTimeKind.Utc).AddTicks(2542), "Initial Migration", new DateTime(2021, 10, 19, 5, 12, 42, 684, DateTimeKind.Utc).AddTicks(2543) }
+                    { 1, "IoT TS", "Initial Migration", new DateTime(2021, 10, 28, 4, 25, 37, 977, DateTimeKind.Utc).AddTicks(9190), "Initial Migration", new DateTime(2021, 10, 28, 4, 25, 37, 977, DateTimeKind.Utc).AddTicks(9778) },
+                    { 2, "CMD", "Initial Migration", new DateTime(2021, 10, 28, 4, 25, 37, 978, DateTimeKind.Utc).AddTicks(700), "Initial Migration", new DateTime(2021, 10, 28, 4, 25, 37, 978, DateTimeKind.Utc).AddTicks(703) },
+                    { 3, "NOC", "Initial Migration", new DateTime(2021, 10, 28, 4, 25, 37, 978, DateTimeKind.Utc).AddTicks(705), "Initial Migration", new DateTime(2021, 10, 28, 4, 25, 37, 978, DateTimeKind.Utc).AddTicks(705) }
                 });
 
             migrationBuilder.InsertData(
@@ -316,9 +316,9 @@ namespace IoT.IncidentManagement.Persistence.Migrations
                 columns: new[] { "Id", "CreatedBy", "CreatedDate", "IncidentSeverity", "LastModifiedBy", "LastModifiedDate", "NotificationInterval" },
                 values: new object[,]
                 {
-                    { 1, "Initial Migration", new DateTime(2021, 10, 19, 5, 12, 42, 685, DateTimeKind.Utc).AddTicks(1623), "P1", "Initial Migration", new DateTime(2021, 10, 19, 5, 12, 42, 685, DateTimeKind.Utc).AddTicks(1625), 60 },
-                    { 2, "Initial Migration", new DateTime(2021, 10, 19, 5, 12, 42, 685, DateTimeKind.Utc).AddTicks(1628), "P2", "Initial Migration", new DateTime(2021, 10, 19, 5, 12, 42, 685, DateTimeKind.Utc).AddTicks(1629), 90 },
-                    { 3, "Initial Migration", new DateTime(2021, 10, 19, 5, 12, 42, 685, DateTimeKind.Utc).AddTicks(1630), "P3", "Initial Migration", new DateTime(2021, 10, 19, 5, 12, 42, 685, DateTimeKind.Utc).AddTicks(1631), 120 }
+                    { 1, "Initial Migration", new DateTime(2021, 10, 28, 4, 25, 37, 978, DateTimeKind.Utc).AddTicks(9939), "P1", "Initial Migration", new DateTime(2021, 10, 28, 4, 25, 37, 978, DateTimeKind.Utc).AddTicks(9942), 60 },
+                    { 2, "Initial Migration", new DateTime(2021, 10, 28, 4, 25, 37, 978, DateTimeKind.Utc).AddTicks(9944), "P2", "Initial Migration", new DateTime(2021, 10, 28, 4, 25, 37, 978, DateTimeKind.Utc).AddTicks(9945), 90 },
+                    { 3, "Initial Migration", new DateTime(2021, 10, 28, 4, 25, 37, 978, DateTimeKind.Utc).AddTicks(9946), "P3", "Initial Migration", new DateTime(2021, 10, 28, 4, 25, 37, 978, DateTimeKind.Utc).AddTicks(9947), 120 }
                 });
 
             migrationBuilder.InsertData(
@@ -326,9 +326,10 @@ namespace IoT.IncidentManagement.Persistence.Migrations
                 columns: new[] { "Id", "CreatedBy", "CreatedDate", "CurrentStatus", "LastModifiedBy", "LastModifiedDate" },
                 values: new object[,]
                 {
-                    { 2, "Initial Migration", new DateTime(2021, 10, 19, 5, 12, 42, 685, DateTimeKind.Utc).AddTicks(590), "Inactive", "Initial Migration", new DateTime(2021, 10, 19, 5, 12, 42, 685, DateTimeKind.Utc).AddTicks(591) },
-                    { 1, "Initial Migration", new DateTime(2021, 10, 19, 5, 12, 42, 685, DateTimeKind.Utc).AddTicks(583), "Active", "Initial Migration", new DateTime(2021, 10, 19, 5, 12, 42, 685, DateTimeKind.Utc).AddTicks(587) },
-                    { 3, "Initial Migration", new DateTime(2021, 10, 19, 5, 12, 42, 685, DateTimeKind.Utc).AddTicks(593), "Postponed", "Initial Migration", new DateTime(2021, 10, 19, 5, 12, 42, 685, DateTimeKind.Utc).AddTicks(593) }
+                    { 3, "Initial Migration", new DateTime(2021, 10, 28, 4, 25, 37, 978, DateTimeKind.Utc).AddTicks(8895), "Postponed", "Initial Migration", new DateTime(2021, 10, 28, 4, 25, 37, 978, DateTimeKind.Utc).AddTicks(8896) },
+                    { 1, "Initial Migration", new DateTime(2021, 10, 28, 4, 25, 37, 978, DateTimeKind.Utc).AddTicks(8887), "Active", "Initial Migration", new DateTime(2021, 10, 28, 4, 25, 37, 978, DateTimeKind.Utc).AddTicks(8891) },
+                    { 2, "Initial Migration", new DateTime(2021, 10, 28, 4, 25, 37, 978, DateTimeKind.Utc).AddTicks(8893), "Inactive", "Initial Migration", new DateTime(2021, 10, 28, 4, 25, 37, 978, DateTimeKind.Utc).AddTicks(8894) },
+                    { 4, "Initial Migration", new DateTime(2021, 10, 28, 4, 25, 37, 978, DateTimeKind.Utc).AddTicks(8897), "Closed", "Initial Migration", new DateTime(2021, 10, 28, 4, 25, 37, 978, DateTimeKind.Utc).AddTicks(8898) }
                 });
 
             migrationBuilder.CreateIndex(

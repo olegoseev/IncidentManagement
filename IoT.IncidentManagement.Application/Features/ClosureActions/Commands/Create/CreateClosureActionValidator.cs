@@ -13,7 +13,7 @@ namespace IoT.IncidentManagement.Application.Features.ClosureActions.Commands.Cr
                 .NotNull()
                 .MaximumLength(ApplicationConstants.ClosureActionMaxLen)
                 .WithMessage("{PropertyName} must not exceed " + $"{ApplicationConstants.ClosureActionMaxLen} characters.");
-            RuleFor(x => x.IncidentId).NotEmpty().WithMessage("{PropertyName} is required.");
+            RuleFor(x => x.IncidentId).GreaterThan(0).WithMessage("{PropertyName} is required.");
         }
     }
 }

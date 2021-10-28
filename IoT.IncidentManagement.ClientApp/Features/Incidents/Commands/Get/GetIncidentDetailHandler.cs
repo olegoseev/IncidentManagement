@@ -12,18 +12,18 @@ namespace IoT.IncidentManagement.ClientApp.Features.Incidents.Commands.Get
     public class GetIncidentDetailHandler : IRequestHandler<GetIncidentDetailRequest, Incident>
     {
 
-        private readonly IIncidentClient _client;
+        private readonly IIncidentClient client;
 
         public GetIncidentDetailHandler(IIncidentClient client)
         {
-            _client = client;
+            this.client = client;
         }
 
         public Task<Incident> Handle(GetIncidentDetailRequest request, CancellationToken cancellationToken)
         {
             _ = request ?? throw new BadRequestException(nameof(request));
 
-            return _client.GetIncidentByIdAsync(request.IncidentId, cancellationToken);
+            return client.GetIncidentByIdAsync(request.IncidentId, cancellationToken);
         }
     }
 }

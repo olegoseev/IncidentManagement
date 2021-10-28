@@ -16,7 +16,7 @@ namespace IoT.IncidentManagement.Persistence.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.10")
+                .HasAnnotation("ProductVersion", "5.0.11")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("IoT.IncidentManagement.Domain.Entities.ActionStore", b =>
@@ -71,7 +71,7 @@ namespace IoT.IncidentManagement.Persistence.Migrations
                         {
                             Id = 1,
                             Description = "Action 1",
-                            InitTime = new DateTime(2021, 10, 19, 5, 12, 42, 685, DateTimeKind.Utc).AddTicks(3288),
+                            InitTime = new DateTime(2021, 10, 28, 4, 25, 37, 979, DateTimeKind.Utc).AddTicks(1468),
                             Interval = 15,
                             Order = 1,
                             Repeat = false,
@@ -81,7 +81,7 @@ namespace IoT.IncidentManagement.Persistence.Migrations
                         {
                             Id = 2,
                             Description = "Action 2",
-                            InitTime = new DateTime(2021, 10, 19, 5, 12, 42, 685, DateTimeKind.Utc).AddTicks(3532),
+                            InitTime = new DateTime(2021, 10, 28, 4, 25, 37, 979, DateTimeKind.Utc).AddTicks(1704),
                             Interval = 15,
                             Order = 2,
                             Repeat = false,
@@ -91,7 +91,7 @@ namespace IoT.IncidentManagement.Persistence.Migrations
                         {
                             Id = 3,
                             Description = "Action 3",
-                            InitTime = new DateTime(2021, 10, 19, 5, 12, 42, 685, DateTimeKind.Utc).AddTicks(3534),
+                            InitTime = new DateTime(2021, 10, 28, 4, 25, 37, 979, DateTimeKind.Utc).AddTicks(1706),
                             Interval = 15,
                             Order = 3,
                             Repeat = true,
@@ -101,7 +101,7 @@ namespace IoT.IncidentManagement.Persistence.Migrations
                         {
                             Id = 4,
                             Description = "Action 4",
-                            InitTime = new DateTime(2021, 10, 19, 5, 12, 42, 685, DateTimeKind.Utc).AddTicks(3535),
+                            InitTime = new DateTime(2021, 10, 28, 4, 25, 37, 979, DateTimeKind.Utc).AddTicks(1707),
                             Interval = 15,
                             Order = 4,
                             Repeat = true,
@@ -111,7 +111,7 @@ namespace IoT.IncidentManagement.Persistence.Migrations
                         {
                             Id = 5,
                             Description = "Action 5",
-                            InitTime = new DateTime(2021, 10, 19, 5, 12, 42, 685, DateTimeKind.Utc).AddTicks(3536),
+                            InitTime = new DateTime(2021, 10, 28, 4, 25, 37, 979, DateTimeKind.Utc).AddTicks(1708),
                             Interval = 15,
                             Order = 5,
                             Repeat = true,
@@ -121,7 +121,7 @@ namespace IoT.IncidentManagement.Persistence.Migrations
                         {
                             Id = 6,
                             Description = "Action 6",
-                            InitTime = new DateTime(2021, 10, 19, 5, 12, 42, 685, DateTimeKind.Utc).AddTicks(3537),
+                            InitTime = new DateTime(2021, 10, 28, 4, 25, 37, 979, DateTimeKind.Utc).AddTicks(1709),
                             Interval = 15,
                             Order = 6,
                             Repeat = false,
@@ -165,27 +165,27 @@ namespace IoT.IncidentManagement.Persistence.Migrations
                             Id = 1,
                             BridgeType = "IoT TS",
                             CreatedBy = "Initial Migration",
-                            CreatedDate = new DateTime(2021, 10, 19, 5, 12, 42, 684, DateTimeKind.Utc).AddTicks(1242),
+                            CreatedDate = new DateTime(2021, 10, 28, 4, 25, 37, 977, DateTimeKind.Utc).AddTicks(9190),
                             LastModifiedBy = "Initial Migration",
-                            LastModifiedDate = new DateTime(2021, 10, 19, 5, 12, 42, 684, DateTimeKind.Utc).AddTicks(1842)
+                            LastModifiedDate = new DateTime(2021, 10, 28, 4, 25, 37, 977, DateTimeKind.Utc).AddTicks(9778)
                         },
                         new
                         {
                             Id = 2,
                             BridgeType = "CMD",
                             CreatedBy = "Initial Migration",
-                            CreatedDate = new DateTime(2021, 10, 19, 5, 12, 42, 684, DateTimeKind.Utc).AddTicks(2538),
+                            CreatedDate = new DateTime(2021, 10, 28, 4, 25, 37, 978, DateTimeKind.Utc).AddTicks(700),
                             LastModifiedBy = "Initial Migration",
-                            LastModifiedDate = new DateTime(2021, 10, 19, 5, 12, 42, 684, DateTimeKind.Utc).AddTicks(2540)
+                            LastModifiedDate = new DateTime(2021, 10, 28, 4, 25, 37, 978, DateTimeKind.Utc).AddTicks(703)
                         },
                         new
                         {
                             Id = 3,
                             BridgeType = "NOC",
                             CreatedBy = "Initial Migration",
-                            CreatedDate = new DateTime(2021, 10, 19, 5, 12, 42, 684, DateTimeKind.Utc).AddTicks(2542),
+                            CreatedDate = new DateTime(2021, 10, 28, 4, 25, 37, 978, DateTimeKind.Utc).AddTicks(705),
                             LastModifiedBy = "Initial Migration",
-                            LastModifiedDate = new DateTime(2021, 10, 19, 5, 12, 42, 684, DateTimeKind.Utc).AddTicks(2543)
+                            LastModifiedDate = new DateTime(2021, 10, 28, 4, 25, 37, 978, DateTimeKind.Utc).AddTicks(705)
                         });
                 });
 
@@ -619,30 +619,30 @@ namespace IoT.IncidentManagement.Persistence.Migrations
                         {
                             Id = 1,
                             CreatedBy = "Initial Migration",
-                            CreatedDate = new DateTime(2021, 10, 19, 5, 12, 42, 685, DateTimeKind.Utc).AddTicks(1623),
+                            CreatedDate = new DateTime(2021, 10, 28, 4, 25, 37, 978, DateTimeKind.Utc).AddTicks(9939),
                             IncidentSeverity = "P1",
                             LastModifiedBy = "Initial Migration",
-                            LastModifiedDate = new DateTime(2021, 10, 19, 5, 12, 42, 685, DateTimeKind.Utc).AddTicks(1625),
+                            LastModifiedDate = new DateTime(2021, 10, 28, 4, 25, 37, 978, DateTimeKind.Utc).AddTicks(9942),
                             NotificationInterval = 60
                         },
                         new
                         {
                             Id = 2,
                             CreatedBy = "Initial Migration",
-                            CreatedDate = new DateTime(2021, 10, 19, 5, 12, 42, 685, DateTimeKind.Utc).AddTicks(1628),
+                            CreatedDate = new DateTime(2021, 10, 28, 4, 25, 37, 978, DateTimeKind.Utc).AddTicks(9944),
                             IncidentSeverity = "P2",
                             LastModifiedBy = "Initial Migration",
-                            LastModifiedDate = new DateTime(2021, 10, 19, 5, 12, 42, 685, DateTimeKind.Utc).AddTicks(1629),
+                            LastModifiedDate = new DateTime(2021, 10, 28, 4, 25, 37, 978, DateTimeKind.Utc).AddTicks(9945),
                             NotificationInterval = 90
                         },
                         new
                         {
                             Id = 3,
                             CreatedBy = "Initial Migration",
-                            CreatedDate = new DateTime(2021, 10, 19, 5, 12, 42, 685, DateTimeKind.Utc).AddTicks(1630),
+                            CreatedDate = new DateTime(2021, 10, 28, 4, 25, 37, 978, DateTimeKind.Utc).AddTicks(9946),
                             IncidentSeverity = "P3",
                             LastModifiedBy = "Initial Migration",
-                            LastModifiedDate = new DateTime(2021, 10, 19, 5, 12, 42, 685, DateTimeKind.Utc).AddTicks(1631),
+                            LastModifiedDate = new DateTime(2021, 10, 28, 4, 25, 37, 978, DateTimeKind.Utc).AddTicks(9947),
                             NotificationInterval = 120
                         });
                 });
@@ -682,28 +682,37 @@ namespace IoT.IncidentManagement.Persistence.Migrations
                         {
                             Id = 1,
                             CreatedBy = "Initial Migration",
-                            CreatedDate = new DateTime(2021, 10, 19, 5, 12, 42, 685, DateTimeKind.Utc).AddTicks(583),
+                            CreatedDate = new DateTime(2021, 10, 28, 4, 25, 37, 978, DateTimeKind.Utc).AddTicks(8887),
                             CurrentStatus = "Active",
                             LastModifiedBy = "Initial Migration",
-                            LastModifiedDate = new DateTime(2021, 10, 19, 5, 12, 42, 685, DateTimeKind.Utc).AddTicks(587)
+                            LastModifiedDate = new DateTime(2021, 10, 28, 4, 25, 37, 978, DateTimeKind.Utc).AddTicks(8891)
                         },
                         new
                         {
                             Id = 2,
                             CreatedBy = "Initial Migration",
-                            CreatedDate = new DateTime(2021, 10, 19, 5, 12, 42, 685, DateTimeKind.Utc).AddTicks(590),
+                            CreatedDate = new DateTime(2021, 10, 28, 4, 25, 37, 978, DateTimeKind.Utc).AddTicks(8893),
                             CurrentStatus = "Inactive",
                             LastModifiedBy = "Initial Migration",
-                            LastModifiedDate = new DateTime(2021, 10, 19, 5, 12, 42, 685, DateTimeKind.Utc).AddTicks(591)
+                            LastModifiedDate = new DateTime(2021, 10, 28, 4, 25, 37, 978, DateTimeKind.Utc).AddTicks(8894)
                         },
                         new
                         {
                             Id = 3,
                             CreatedBy = "Initial Migration",
-                            CreatedDate = new DateTime(2021, 10, 19, 5, 12, 42, 685, DateTimeKind.Utc).AddTicks(593),
+                            CreatedDate = new DateTime(2021, 10, 28, 4, 25, 37, 978, DateTimeKind.Utc).AddTicks(8895),
                             CurrentStatus = "Postponed",
                             LastModifiedBy = "Initial Migration",
-                            LastModifiedDate = new DateTime(2021, 10, 19, 5, 12, 42, 685, DateTimeKind.Utc).AddTicks(593)
+                            LastModifiedDate = new DateTime(2021, 10, 28, 4, 25, 37, 978, DateTimeKind.Utc).AddTicks(8896)
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedBy = "Initial Migration",
+                            CreatedDate = new DateTime(2021, 10, 28, 4, 25, 37, 978, DateTimeKind.Utc).AddTicks(8897),
+                            CurrentStatus = "Closed",
+                            LastModifiedBy = "Initial Migration",
+                            LastModifiedDate = new DateTime(2021, 10, 28, 4, 25, 37, 978, DateTimeKind.Utc).AddTicks(8898)
                         });
                 });
 

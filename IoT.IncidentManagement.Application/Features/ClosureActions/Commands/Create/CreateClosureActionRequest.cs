@@ -6,7 +6,7 @@ namespace IoT.IncidentManagement.Application.Features.ClosureActions.Commands.Cr
 {
     public class CreateClosureActionRequest : IRequest<ClosureActionDto>
     {
-        public string ToDoList { get; set; }
         public int IncidentId { get; set; }
+        public string ToDoList { get; set; }
     }
 }

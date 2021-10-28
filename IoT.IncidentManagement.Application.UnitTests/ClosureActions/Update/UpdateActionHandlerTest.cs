@@ -23,7 +23,7 @@ namespace IoT.IncidentManagement.Application.UnitTests.ClosureActions.Update
         {
             var _mockActionRepository = RepositoryMocks.GetClosureActionRepository();
             var udpateHandler = new UpdateClosureActionHandler(_mockActionRepository, _mapper);
-            await udpateHandler.Handle(new UpdateClosureActionRequest { Id = 3, ToDoList = "NEW Action" }, CancellationToken.None);
+            await udpateHandler.Handle(new UpdateClosureActionRequest { IncidentId = 3, ToDoList = "NEW Action" }, CancellationToken.None);
 
 
             var getHandler = new GetClosureActionDetailsHandler(_mockActionRepository, _mapper);
@@ -50,7 +50,7 @@ namespace IoT.IncidentManagement.Application.UnitTests.ClosureActions.Update
             var _mockActionRepository = RepositoryMocks.GetClosureActionRepository();
             var handler = new UpdateClosureActionHandler(_mockActionRepository, _mapper);
 
-            Assert.ThrowsAsync<NotFoundException>(() => handler.Handle(new UpdateClosureActionRequest { Id = 55 }, CancellationToken.None));
+            Assert.ThrowsAsync<NotFoundException>(() => handler.Handle(new UpdateClosureActionRequest { IncidentId = 55 }, CancellationToken.None));
         }
 
         [Fact]
@@ -58,7 +58,7 @@ namespace IoT.IncidentManagement.Application.UnitTests.ClosureActions.Update
         {
             var _mockActionRepository = RepositoryMocks.GetClosureActionRepository();
             var handler = new UpdateClosureActionHandler(_mockActionRepository, _mapper);
-            await Assert.ThrowsAsync<ValidationException>(() => handler.Handle(new UpdateClosureActionRequest { Id = 1 }, CancellationToken.None));
+            await Assert.ThrowsAsync<ValidationException>(() => handler.Handle(new UpdateClosureActionRequest { IncidentId = 1 }, CancellationToken.None));
         }
 
         [Fact]
@@ -69,7 +69,7 @@ namespace IoT.IncidentManagement.Application.UnitTests.ClosureActions.Update
             var handler = new UpdateClosureActionHandler(_mockActionRepository, _mapper);
             await Assert.ThrowsAsync<ValidationException>(() => handler.Handle(new UpdateClosureActionRequest
             {
-                Id = 1,
+                IncidentId = 1,
                 ToDoList = action
             }, CancellationToken.None));
         }

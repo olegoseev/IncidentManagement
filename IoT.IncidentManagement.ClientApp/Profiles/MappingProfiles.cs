@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 
 using IoT.IncidentManagement.ClientApp.Features.ClosureActions.Commands.Create;
+using IoT.IncidentManagement.ClientApp.Features.ClosureActions.Commands.Update;
 using IoT.IncidentManagement.ClientApp.Features.Incidents.Commands.Create;
 using IoT.IncidentManagement.ClientApp.Features.Incidents.Commands.Update;
 using IoT.IncidentManagement.ClientApp.Features.ManagerActions.Create.Group;
@@ -53,6 +54,12 @@ namespace IoT.IncidentManagement.ClientApp.Profiles
             CreateMap<UpdateNotificationRequest, NotificationDto>();
             CreateMap<NotificationDto, Notification>();
             CreateMap<Notification, UpdateNotificationRequest>();
+            #endregion
+
+            #region Closure actions
+            CreateMap<ClosureActionDto, ClosureAction>();
+            CreateMap<CreateIncidentClosureActionsRequest, ClosureActionDto>();
+            CreateMap<UpdateIncidentClosureActionsRequest, ClosureActionDto>();
             #endregion
         }
     }

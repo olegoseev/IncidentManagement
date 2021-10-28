@@ -14,21 +14,33 @@ namespace IoT.IncidentManagement.Client.Components
 {
     public partial class IncidentInformation
     {
+        #region Services
         [Inject] private IMediator Mediator { get; set; }
+        #endregion
+
+        #region Parameters
         [Parameter] public EventCallback OnInformationUpdate { get; set; }
-
         [Parameter] public int IncidentId { get; set; }
+        #endregion
 
-
+        #region Private fields
         private Incident Incident { get; set; }
-        private Task OnDialogClose()
+        #endregion
+
+        private async Task OnDialogClose()
         {
-            return OnInformationUpdate.InvokeAsync();
+            await LoadIncidentInformationAsync();
+            await OnInformationUpdate.InvokeAsync();
         }
 
         protected override async Task OnInitializedAsync()
         {
-            Incident =  await Mediator.Send(new GetIncidentDetailRequest { IncidentId = IncidentId});
+            await LoadIncidentInformationAsync();
+        }
+
+        private async Task LoadIncidentInformationAsync()
+        {
+            Incident = await Mediator.Send(new GetIncidentDetailRequest { IncidentId = IncidentId });
         }
     }
 }

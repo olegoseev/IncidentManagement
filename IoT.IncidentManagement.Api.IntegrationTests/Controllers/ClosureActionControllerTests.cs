@@ -77,7 +77,7 @@ namespace IoT.IncidentManagement.Api.IntegrationTests.Controllers
         {
             var client = _factory.CreateClient();
 
-            UpdateClosureActionRequest request = new() { Id = id, ToDoList = action };
+            UpdateClosureActionRequest request = new() { IncidentId = id, ToDoList = action };
 
             var content = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
 

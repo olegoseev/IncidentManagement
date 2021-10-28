@@ -5,7 +5,7 @@ namespace IoT.IncidentManagement.Application.Features.ClosureActions.Commands.Up
 {
     public class UpdateClosureActionRequest : IRequest
     {
-        public int Id { get; set; }
+        public int IncidentId { get; set; }
         public string ToDoList { get; set; }
     }
 }

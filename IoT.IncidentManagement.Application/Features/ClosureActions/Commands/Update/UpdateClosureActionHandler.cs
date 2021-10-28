@@ -33,7 +33,7 @@ namespace IoT.IncidentManagement.Application.Features.ClosureActions.Commands.Up
             if(validationResult.IsValid is false)
                 throw new ValidationException(validationResult);
 
-            var entity = await repository.GetByIdAsync(request.Id);
+            var entity = await repository.GetByIdAsync(request.IncidentId);
             
             if(entity is null)
                 throw new NotFoundException(nameof(entity));

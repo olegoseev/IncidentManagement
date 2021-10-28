@@ -19,5 +19,17 @@ namespace IoT.IncidentManagement.ClientServices.Services
             URL = "api/ClosureAction";
             return AddAsync<ClosureActionDto, ClosureAction>(dto, cancellationToken);
         }
+
+        public Task<ClosureActionDto> GetClosureActionAsync(int IncidentId, CancellationToken cancellationToken)
+        {
+            URL = $"api/ClosureAction/{IncidentId}";
+            return GetAsync<ClosureActionDto>(cancellationToken);
+        }
+
+        public Task UpdateClosureActionAsync(ClosureActionDto dto, CancellationToken cancellationToken)
+        {
+            URL = $"api/ClosureAction";
+            return UpdateAsync(dto, cancellationToken);
+        }
     }
 }
