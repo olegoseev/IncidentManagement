@@ -7,10 +7,8 @@
                     <div class="mb-3 row form-group">
                         <label for="inputCaseNumber" class="col-sm-3 col-form-label text-end fw-bold">Case Number</label>
                         <div class="col-sm-6">
-                            <Loading ShowLoading="@contentIsLoading">
-                                <InputText type="text" class="form-control" id="inputCaseNumber" readonly
-                                           @bind-Value="@Incident.IncidentCase" placeholder="Enter case number"></InputText>
-                            </Loading>
+                            <InputText type="text" class="form-control" id="inputCaseNumber" readonly
+                                       @bind-Value="@Incident.IncidentCase" placeholder="Enter case number"></InputText>
                         </div>
                     </div>
                     <div class="mb-3 row form-group">
@@ -49,15 +47,10 @@
                         </div>
                     </div>
                     <div class="mb-3 row form-group">
-                        <label for="statusBridge" class="col-sm-3 col-form-label text-end fw-bold">Current Status</label>
+                        <label for="statusSelect" class="col-sm-3 col-form-label text-end fw-bold">Current Status</label>
                         <div class="col-sm-6">
-                            <InputSelect id="statusSelect" class="form-select" @bind-Value="@Incident.Status.Id">
-                                <option value="0">Please select...</option>
-                                @foreach (var status in statuses)
-                                {
-                                    <option value="@status.Id">@status.CurrentStatus</option>
-                                }
-                            </InputSelect>
+                            <InputText type="text" class="form-control" id="statusSelect" readonly
+                                       @bind-Value="@Incident.Status.CurrentStatus"></InputText>
                         </div>
                     </div>
                     <div class="mb-3 row form-group">

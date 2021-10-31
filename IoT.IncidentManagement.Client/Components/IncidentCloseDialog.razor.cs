@@ -13,13 +13,16 @@ using MediatR;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 
-using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace IoT.IncidentManagement.Client.Components
 {
     public partial class IncidentCloseDialog
     {
+
+        private static readonly string STATUS_CLOSED = "Closed";
+
         #region Inject
         [Inject] public IMapper Mapper { get; set; }
         [Inject] public IMediator Mediator { get; set; }
@@ -27,7 +30,6 @@ namespace IoT.IncidentManagement.Client.Components
 
         #region Parameters
         [Parameter] public string DialogId { get; set; }
-        [Parameter] public bool ShowLoading { get; set; } = false;
         [Parameter] public string Title { get; set; }
         [Parameter] public Incident Incident { get; set; }
         [Parameter] public string ButtonCaption { get; set; }
@@ -36,10 +38,8 @@ namespace IoT.IncidentManagement.Client.Components
 
         #region Private fields
         private Incident incident;
-        private IEnumerable<Status> statuses = new List<Status>();
         private EditContext editContext;
         private ClosureAction closureActions = new ClosureAction { ToDoList = string.Empty };
-        private bool contentIsLoading = false;
         private bool hasActions = false;
         #endregion
 
@@ -66,13 +66,13 @@ namespace IoT.IncidentManagement.Client.Components
         protected override async Task OnInitializedAsync()
         {
             incident = Mapper.Map<Incident>(Incident);
-            incident.EndTime = System.DateTime.UtcNow;
             editContext = new EditContext(incident);
-            await LoadStatusInformationAsync();
+            incident.EndTime = System.DateTime.UtcNow;
+            incident.Status = (await Mediator.Send(new GetStatusListRequest())).FirstOrDefault(s => s.CurrentStatus == STATUS_CLOSED);
 
             hasActions = await Mediator.Send(new GetIncidentClosureActionStatusRequest { IncidentId = incident.Id });
 
-            if(hasActions is true)
+            if (hasActions is true)
             {
                 await LoadClosureActionsInformation();
             }
@@ -85,12 +85,6 @@ namespace IoT.IncidentManagement.Client.Components
         private async Task LoadClosureActionsInformation()
         {
             closureActions = await Mediator.Send(new GetIncidentClosureActionsRequest { IncidentId = incident.Id });
-        }
-
-
-        private async Task LoadStatusInformationAsync()
-        {
-            statuses = await Mediator.Send(new GetStatusListRequest());
         }
     }
 }
