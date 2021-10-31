@@ -74,8 +74,7 @@ namespace IoT.IncidentManagement.Client.Components
         private async Task HandleValidSubmit()
         {
             var createIncidentRequest = Mapper.Map<CreateIncidentRequest>(incident);
-            await Mediator.Send(createIncidentRequest);
-
+            incident = await Mediator.Send(createIncidentRequest);
 
             await Mediator.Send(new CreateParticipantsRequest { IncidentId = incident.Id, Group = "IoT SA" });
             await Mediator.Send(new CreateNoteRequest { IncidentId = incident.Id, Record = $"Incident {incident.IncidentCase} created" });
