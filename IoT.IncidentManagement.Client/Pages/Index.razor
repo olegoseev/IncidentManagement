@@ -41,21 +41,14 @@ else
 }
 
 @code {
-    List<Incident> incidents;
+    IEnumerable<Incident> incidents;
 
     [Inject] IMediator MediatorService { get; set; }
     [Inject] NavigationManager NavManager { get; set; }
 
-    Incident incident;
-
-
-
-    bool ShowDialog = false;
-
     protected override async Task OnInitializedAsync()
     {
         incidents = (await MediatorService.Send(new GetIncidentListRequest())).ToList();
-        incident = incidents.FirstOrDefault();
     }
 
     private void OnClick(int id) => 
@@ -65,25 +58,18 @@ else
     private async Task OnClickDelete(int id)
     {
         await MediatorService.Send(new DeleteIncidentRequest {IncidentId = id});
-        incidents = (await MediatorService.Send(new GetIncidentListRequest())).ToList();
+        incidents = await MediatorService.Send(new GetIncidentListRequest());
         StateHasChanged();
     }
 
 
     private async Task UpdateView()
     {
-        incidents = (await MediatorService.Send(new GetIncidentListRequest())).ToList();
+        incidents = await MediatorService.Send(new GetIncidentListRequest());
     }
 
     private void OnClick()
     {
-        ShowDialog = true;
-        StateHasChanged();
-    }
-
-    private void Close()
-    {
-        ShowDialog = false;
         StateHasChanged();
     }
 }
