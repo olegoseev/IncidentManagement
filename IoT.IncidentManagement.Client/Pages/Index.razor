@@ -36,11 +36,7 @@ else
     </table>
 
 
-    @if(ShowDialog)
-    {
-        @*<ModalForm></ModalForm>*@
-
-    }
+    <IncidentCreateDialog DialogId="incident_create_dialog" Title="Create New Incident" OnClose="@(() => UpdateView())"></IncidentCreateDialog>
 
 }
 
