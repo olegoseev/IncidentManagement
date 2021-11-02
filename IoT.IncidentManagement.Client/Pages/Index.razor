@@ -18,6 +18,7 @@ else
                 <th>Status</th>
                 <th>Action</th>
                 <th>Action</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -28,7 +29,8 @@ else
                     <td>@incident.Severity.IncidentSeverity</td>
                     <td>@incident.Bridge.BridgeType</td>
                     <td>@incident.Status.CurrentStatus</td>
-                    <td><button class="btn btn-sm btn-danger" @onclick=@(() => OnClick(incident.Id))>Go</button></td>
+                    <td><button class="btn btn-sm btn-danger" @onclick=@(() => OnClick(incident.Id))>Manager</button></td>
+                    <td><button class="btn btn-sm btn-danger" @onclick=@(() => NavManager.NavigateTo($"/report/{incident.Id}", forceLoad: true))>Report</button></td>
                     <td><button class="btn btn-sm btn-danger" @onclick=@(() => OnClickDelete(incident.Id))>Delete</button></td>
                 </tr>
             }
@@ -53,7 +55,7 @@ else
 
     private void OnClick(int id) => 
         NavManager.NavigateTo($"/manage/{id}", forceLoad: true);
-    
+
 
     private async Task OnClickDelete(int id)
     {
