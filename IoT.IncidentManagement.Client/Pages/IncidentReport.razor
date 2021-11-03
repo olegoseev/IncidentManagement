@@ -2,7 +2,12 @@
 
 
 
-<section class="d-grid main-grid">
+<section class="d-grid main-grid border-1">
+    <div class="container h-area">
+        <div class="row">
+            <p class="h2">Incident Report</p>
+        </div>
+    </div>
     @if (incident is null)
     {
         <Spinner />
@@ -10,7 +15,7 @@
     else
     {
 
-        <section class="it-incident d-grid incident-grid border">
+        <section class="inc-area d-grid incident-grid border">
             <div class="case">Case number</div>
             <div class="case-num">@incident.IncidentCase</div>
             <div class="start">Start time</div>
@@ -22,13 +27,13 @@
             <div class="bridge">Troubleshooting bridge</div>
             <div class="bridge-type">@incident.Bridge.BridgeType</div>
         </section>
-        <section class="it-descrition border">
+        <section class="desc-area border">
         </section>
-        <section class="it-impact border">
+        <section class="imp-area border">
         </section>
-        <section class="it-participant border">
+        <section class="part-area border">
         </section>
-        <section class="it-note border">
+        <section class="note-area border">
         </section>
     }
 </section>

@@ -6,26 +6,35 @@
 .main-grid {
     grid-template-columns: 824px;
     grid-template-rows: auto;
+    grid-template-areas:
+        "header"
+        "information"
+        "description"
+        "impact"
+        "participant"
+        "note";
 }
 
-    .main-grid .it-incident {
-        grid-row: 1;
+    .main-grid .h-area {
+        grid-area: header;
+        justify-self: center;
+        font-weight: bold;
     }
 
-    .main-grid .it-descrition {
-        grid-row: 2;
+    .main-grid .inc-area {
+        grid-area: information;
     }
-
-    .main-grid .it-impact {
-        grid-row: 3;
+    .main-grid .desc-area {
+        grid-area: description;
     }
-
-    .main-grid .it-participant {
-        grid-row: 4;
+    .main-grid .imp-area{
+        grid-area: impact;
     }
-
-    .main-grid .it-note {
-        grid-row: 5;
+    .main-grid .part-area {
+        grid-area: participant;
+    }
+    .main-grid .note-area {
+        grid-area: note;
     }
 
 .incident-grid {
