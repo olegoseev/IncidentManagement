@@ -1,4 +1,5 @@
-﻿using IoT.IncidentManagement.ClientDomain.Entities;
+﻿using IoT.IncidentManagement.ClientApp.Features.Incidents.Commands.Get;
+using IoT.IncidentManagement.ClientDomain.Entities;
 
 using MediatR;
 
@@ -30,9 +31,9 @@ namespace IoT.IncidentManagement.Client.Pages
         private ClosureAction closureAction;
         #endregion
 
-        protected override Task OnInitializedAsync()
+        protected override async Task OnInitializedAsync()
         {
-            return base.OnInitializedAsync();
+            incident = await Mediator.Send(new GetIncidentDetailRequest { IncidentId = IncidentId });
         }
 
 
