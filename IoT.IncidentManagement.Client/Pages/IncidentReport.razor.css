@@ -3,6 +3,16 @@
     border-bottom: 1px solid #808080;
 }
 
+.roboto-b {
+    font-weight: 700;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.roboto-r {
+    font-weight: 400;
+    font-family: 'Roboto Mono', monospace;
+}
+
 .main-grid {
     grid-template-columns: 824px;
     grid-template-rows: auto;
@@ -17,8 +27,7 @@
 
     .main-grid .h-area {
         grid-area: header;
-        justify-self: center;
-        font-weight: bold;
+        justify-self: center;      
     }
 
     .main-grid .inc-area {
@@ -39,7 +48,7 @@
 
 .incident-grid {
     grid-template-columns: repeat(8, 102px);
-    grid-template-rows: repeat(5, 36px)
+    grid-template-rows: repeat(5, 54px)
 }
 
     .incident-grid .case {
