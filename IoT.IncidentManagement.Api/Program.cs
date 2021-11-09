@@ -1,37 +1,45 @@
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
+
+using IoT.IncidentManagement.Application;
+using IoT.IncidentManagement.Persistence;
+
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 using Serilog;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+var builder = WebApplication.CreateBuilder(args);
 
-namespace IoT.IncidentManagement.Api
+
+//Log.Logger = new LoggerConfiguration()
+//    .ReadFrom.Configuration(config)
+//    .WriteTo.File("Logs/log-.txt", rollingInterval: RollingInterval.Day)
+//    .CreateLogger();
+
+// Add services to the container.
+
+builder.Services.AddControllers();
+builder.Services.AddApplicationServices(builder.Configuration);
+builder.Services.AddPersistenceServices(builder.Configuration);
+builder.Services.AddCors(options =>
+        options.AddPolicy("Open", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
 {
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-
-            var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-
-            Log.Logger = new LoggerConfiguration()
-                .ReadFrom.Configuration(config)
-                .WriteTo.File("Logs/log-.txt", rollingInterval: RollingInterval.Day)
-                .CreateLogger();
-
-            CreateHostBuilder(args).Build().Run();
-        }
-
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
-    }
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
+
+app.UseHttpsRedirection();
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.Run();
