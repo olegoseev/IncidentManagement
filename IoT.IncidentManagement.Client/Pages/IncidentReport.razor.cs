@@ -1,4 +1,7 @@
-﻿using IoT.IncidentManagement.ClientApp.Features.Incidents.Commands.Get;
+﻿using IoT.IncidentManagement.ClientApp.Features.ClosureActions.Commands.Get.One;
+using IoT.IncidentManagement.ClientApp.Features.Incidents.Commands.Get;
+using IoT.IncidentManagement.ClientApp.Features.Notes.Commands.Get.List;
+using IoT.IncidentManagement.ClientApp.Features.Participants.Commands.Get;
 using IoT.IncidentManagement.ClientDomain.Entities;
 
 using MediatR;
@@ -26,7 +29,7 @@ namespace IoT.IncidentManagement.Client.Pages
 
         #region Private fields
         private Incident incident;
-        private Note note;
+        private string incidentNotes;
         private Participant participant;
         private ClosureAction closureAction;
         #endregion
@@ -34,6 +37,17 @@ namespace IoT.IncidentManagement.Client.Pages
         protected override async Task OnInitializedAsync()
         {
             incident = await Mediator.Send(new GetIncidentDetailRequest { IncidentId = IncidentId });
+            participant = await Mediator.Send(new GetParticipantsRequest { IncidentId = IncidentId });
+            closureAction = await Mediator.Send(new GetIncidentClosureActionsRequest { IncidentId = IncidentId });
+            var notes = await Mediator.Send(new GetIncidentNotesRequest { IncidentId = IncidentId });
+
+            var strBilder = new StringBuilder();
+            foreach(var note in notes)
+            {
+                strBilder.Append($"{note.RecordTime} {note.Record}");
+            }
+            incidentNotes = strBilder.ToString();
+
         }
 
 
