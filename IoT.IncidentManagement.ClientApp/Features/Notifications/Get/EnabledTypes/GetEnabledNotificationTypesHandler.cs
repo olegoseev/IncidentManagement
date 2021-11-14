@@ -11,11 +11,11 @@ namespace IoT.IncidentManagement.ClientApp.Features.Notifications.Get.EnabledTyp
 {
     public class GetEnabledNotificationTypesHandler : IRequestHandler<GetEnabledNotificationTypesRequest, EnabledNotificationTypes>
     {
-        private readonly INotificationClient _client;
+        private readonly INotificationClient client;
 
         public GetEnabledNotificationTypesHandler(INotificationClient client)
         {
-            _client = client;
+            this.client = client;
         }
 
         public Task<EnabledNotificationTypes> Handle(GetEnabledNotificationTypesRequest request, CancellationToken cancellationToken)
@@ -23,7 +23,7 @@ namespace IoT.IncidentManagement.ClientApp.Features.Notifications.Get.EnabledTyp
             if(request == null)
                 throw new BadRequestException(nameof(request));
 
-           return _client.GetEnabledNotificationTypesAsync(request.IncidentId, cancellationToken);
+           return client.GetEnabledNotificationTypesAsync(request.IncidentId, cancellationToken);
         }
     }
 }

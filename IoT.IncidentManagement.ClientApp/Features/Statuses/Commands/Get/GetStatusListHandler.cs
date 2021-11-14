@@ -16,18 +16,19 @@ namespace IoT.IncidentManagement.ClientApp.Features.Statuses.Commands.Get
     public class GetStatusListHandler : IRequestHandler<GetStatusListRequest, IEnumerable<Status>>
     {
 
-        private readonly IStatusClient _client;
+        private readonly IStatusClient client;
 
         public GetStatusListHandler(IStatusClient client)
         {
-            _client = client;
+            this.client = client;
         }
 
         public Task<IEnumerable<Status>> Handle(GetStatusListRequest request, CancellationToken cancellationToken)
         {
-            _ = request ?? throw new BadRequestException(nameof(request));
+            if(request is null)
+                throw new BadRequestException(nameof(request));
 
-            return _client.GetAllStatusesAsync(cancellationToken);
+            return client.GetAllStatusesAsync(cancellationToken);
         }
     }
 }

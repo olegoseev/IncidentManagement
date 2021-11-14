@@ -16,20 +16,21 @@ namespace IoT.IncidentManagement.ClientApp.Features.Participants.Commands.Get
     public class GetParticipantsHandler : IRequestHandler<GetParticipantsRequest, Participant>
     {
 
-        private readonly IParticipantClient _client;
+        private readonly IParticipantClient client;
 
         public GetParticipantsHandler(IParticipantClient client)
         {
-            _client = client;
+            this.client = client;
         }
 
         public async Task<Participant> Handle(GetParticipantsRequest request, CancellationToken cancellationToken)
         {
-            _ = request ?? throw new BadRequestException(nameof(request));
+            if(request is null)
+                throw new BadRequestException(nameof(request));
 
             try
             {
-                return await _client.GetIncidentParticipantsByIncidentIdAsync(request.IncidentId, cancellationToken);
+                return await client.GetIncidentParticipantsByIncidentIdAsync(request.IncidentId, cancellationToken);
             }
             catch(ApiException ex)
             {

@@ -16,18 +16,19 @@ namespace IoT.IncidentManagement.ClientApp.Features.Severities.Commands.Get.List
     public class GetSeverityListHandler : IRequestHandler<GetSeverityListRequest, IEnumerable<Severity>>
     {
 
-        private readonly ISeverityClient _client;
+        private readonly ISeverityClient client;
 
         public GetSeverityListHandler(ISeverityClient client)
         {
-            _client = client;
+            this.client = client;
         }
 
         public Task<IEnumerable<Severity>> Handle(GetSeverityListRequest request, CancellationToken cancellationToken)
         {
-            _ = request ?? throw new BadRequestException(nameof(request));
+            if(request is null)
+                throw new BadRequestException(nameof(request));
 
-            return _client.GetAllSeveritiesAsync(cancellationToken);
+            return client.GetAllSeveritiesAsync(cancellationToken);
         }
     }
 }
