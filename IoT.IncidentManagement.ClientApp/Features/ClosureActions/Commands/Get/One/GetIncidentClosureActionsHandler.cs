@@ -38,7 +38,8 @@ namespace IoT.IncidentManagement.ClientApp.Features.ClosureActions.Commands.Get.
             }
             catch (ApiException ex)
             {
-                return new ClosureAction { IncidentId = request.IncidentId, ToDoList = "No Actions" };
+                //return new ClosureAction { IncidentId = request.IncidentId, ToDoList = "No Actions" };
+                return null;
             }
         }
     }
