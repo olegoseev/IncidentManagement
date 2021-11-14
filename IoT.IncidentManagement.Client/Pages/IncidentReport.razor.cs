@@ -38,11 +38,12 @@ namespace IoT.IncidentManagement.Client.Pages
         {
             incident = await Mediator.Send(new GetIncidentDetailRequest { IncidentId = IncidentId });
             participant = await Mediator.Send(new GetParticipantsRequest { IncidentId = IncidentId });
-            closureAction = await Mediator.Send(new GetIncidentClosureActionsRequest { IncidentId = IncidentId });
+            closureAction = (await Mediator.Send(new GetIncidentClosureActionsRequest { IncidentId = IncidentId }))
+                                ?? new ClosureAction { IncidentId = IncidentId, ToDoList = "No Actions" };
             var notes = await Mediator.Send(new GetIncidentNotesRequest { IncidentId = IncidentId });
 
             var strBilder = new StringBuilder();
-            foreach(var note in notes)
+            foreach (var note in notes)
             {
                 strBilder.Append($"{note.RecordTime} {note.Record}");
             }
