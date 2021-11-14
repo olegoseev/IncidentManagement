@@ -22,4 +22,8 @@
     <ProjectReference Include="..\IoT.IncidentManagement.ClientDomain\IoT.IncidentManagement.ClientDomain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Exceptions\" />
+  </ItemGroup>
+
 </Project>

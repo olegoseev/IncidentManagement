@@ -23,10 +23,18 @@ namespace IoT.IncidentManagement.ClientApp.Features.Participants.Commands.Get
             _client = client;
         }
 
-        public Task<Participant> Handle(GetParticipantsRequest request, CancellationToken cancellationToken)
+        public async Task<Participant> Handle(GetParticipantsRequest request, CancellationToken cancellationToken)
         {
             _ = request ?? throw new BadRequestException(nameof(request));
-            return _client.GetIncidentParticipantsByIncidentIdAsync(request.IncidentId, cancellationToken);
+
+            try
+            {
+                return await _client.GetIncidentParticipantsByIncidentIdAsync(request.IncidentId, cancellationToken);
+            }
+            catch(ApiException ex)
+            {
+                return await Task.FromResult(new Participant { IncidentId = request.IncidentId, Group = string.Empty});
+            }
         }
     }
 }

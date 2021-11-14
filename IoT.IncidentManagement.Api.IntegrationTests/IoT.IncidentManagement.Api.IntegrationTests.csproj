@@ -22,6 +22,10 @@
     </PackageReference>
   </ItemGroup>
 
+	<ItemGroup>
+		<InternalsVisibleTo Include="..\IoT.IncidentManagement.Api\IoT.IncidentManagement.Api" />
+	</ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\IoT.IncidentManagement.Api\IoT.IncidentManagement.Api.csproj" />
     <ProjectReference Include="..\IoT.IncidentManagement.Application\IoT.IncidentManagement.Application.csproj" />

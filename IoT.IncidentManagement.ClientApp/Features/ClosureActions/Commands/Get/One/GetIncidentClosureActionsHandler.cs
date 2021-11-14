@@ -31,8 +31,15 @@ namespace IoT.IncidentManagement.ClientApp.Features.ClosureActions.Commands.Get.
             if (request is null)
                 throw new BadRequestException(nameof(request));
 
-            var dto = await client.GetClosureActionAsync(request.IncidentId, cancellationToken);
-            return mapper.Map<ClosureAction>(dto);
+            try
+            {
+                var dto = await client.GetClosureActionAsync(request.IncidentId, cancellationToken);
+                return mapper.Map<ClosureAction>(dto);
+            }
+            catch (ApiException ex)
+            {
+                return new ClosureAction { IncidentId = request.IncidentId, ToDoList = "No Actions" };
+            }
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using IoT.IncidentManagement.ClientApp.Contracts;
-using IoT.IncidentManagement.ClientServices.Exceptions;
+using IoT.IncidentManagement.ClientApp.Exceptions;
 using IoT.IncidentManagement.ClientServices.Utils;
 
 using Newtonsoft.Json;
@@ -37,6 +37,7 @@ namespace IoT.IncidentManagement.ClientServices.Services
         }
 
         #region Get
+
         public async Task<T> GetAsync<T>(CancellationToken cancellationToken)
         {
             var urlBuilder = new StringBuilder();

@@ -1,5 +1,5 @@
 ﻿using IoT.IncidentManagement.ClientApp.Contracts;
-using IoT.IncidentManagement.ClientServices.Exceptions;
+using IoT.IncidentManagement.ClientApp.Exceptions;
 
 using Newtonsoft.Json;
 

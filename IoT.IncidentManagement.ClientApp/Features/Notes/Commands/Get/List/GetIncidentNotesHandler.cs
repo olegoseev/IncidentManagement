@@ -23,12 +23,18 @@ namespace IoT.IncidentManagement.ClientApp.Features.Notes.Commands.Get.List
             this.client = client;
         }
 
-        public Task<IEnumerable<Note>> Handle(GetIncidentNotesRequest request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<Note>> Handle(GetIncidentNotesRequest request, CancellationToken cancellationToken)
         {
             if(request is null)
                 throw new BadRequestException(nameof(request));
-
-            return client.GetIncidentNotesByIncidentIdAsync(request.IncidentId, cancellationToken);
+            try
+            {
+                return await client.GetIncidentNotesByIncidentIdAsync(request.IncidentId, cancellationToken);
+            }
+            catch(ApiException ex)
+            {
+                return await Task.FromResult(new List<Note>());
+            }
         }
     }
 }
