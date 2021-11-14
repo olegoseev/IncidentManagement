@@ -3,6 +3,8 @@ using IoT.IncidentManagement.Application.Features.Severities.Commands.Create;
 using IoT.IncidentManagement.Application.Features.Severities.Commands.Update;
 using IoT.IncidentManagement.Application.Models;
 
+using Microsoft.VisualStudio.TestPlatform.TestHost;
+
 using Newtonsoft.Json;
 
 using System;
@@ -16,12 +18,12 @@ using Xunit;
 
 namespace IoT.IncidentManagement.Api.IntegrationTests.Controllers
 {
-    public class SeverityControllerTests : IClassFixture<CustomWebApplicationFactory<Startup>>
+    public class SeverityControllerTests : IClassFixture<CustomWebApplicationFactory<Program>>
     {
-        private readonly CustomWebApplicationFactory<Startup> _factory;
+        private readonly CustomWebApplicationFactory<Program> _factory;
 
         private static string Uri = "/api/severity";
-        public SeverityControllerTests(CustomWebApplicationFactory<Startup> factory)
+        public SeverityControllerTests(CustomWebApplicationFactory<Program> factory)
         {
             _factory = factory;
         }

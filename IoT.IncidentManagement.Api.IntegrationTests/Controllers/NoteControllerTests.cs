@@ -3,6 +3,8 @@ using IoT.IncidentManagement.Application.Features.Notes.Commands.Create;
 using IoT.IncidentManagement.Application.Features.Notes.Commands.Update;
 using IoT.IncidentManagement.Application.Models;
 
+using Microsoft.VisualStudio.TestPlatform.TestHost;
+
 using Newtonsoft.Json;
 
 using System;
@@ -16,12 +18,12 @@ using Xunit;
 
 namespace IoT.IncidentManagement.Api.IntegrationTests.Controllers
 {
-    public class NoteControllerTests : IClassFixture<CustomWebApplicationFactory<Startup>>
+    public class NoteControllerTests : IClassFixture<CustomWebApplicationFactory<Program>>
     {
-        private readonly CustomWebApplicationFactory<Startup> _factory;
+        private readonly CustomWebApplicationFactory<Program> _factory;
 
         private static readonly string Uri = "/api/note";
-        public NoteControllerTests(CustomWebApplicationFactory<Startup> factory)
+        public NoteControllerTests(CustomWebApplicationFactory<Program> factory)
         {
             _factory = factory;
         }

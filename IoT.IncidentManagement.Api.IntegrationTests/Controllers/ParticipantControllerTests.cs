@@ -3,6 +3,8 @@ using IoT.IncidentManagement.Application.Features.Participants.Commands.Create;
 using IoT.IncidentManagement.Application.Features.Participants.Commands.Update;
 using IoT.IncidentManagement.Application.Models;
 
+using Microsoft.VisualStudio.TestPlatform.TestHost;
+
 using Newtonsoft.Json;
 
 using System;
@@ -16,12 +18,12 @@ using Xunit;
 
 namespace IoT.IncidentManagement.Api.IntegrationTests.Controllers
 {
-    public class ParticipantControllerTests : IClassFixture<CustomWebApplicationFactory<Startup>>
+    public class ParticipantControllerTests : IClassFixture<CustomWebApplicationFactory<Program>>
     {
-        private readonly CustomWebApplicationFactory<Startup> _factory;
+        private readonly CustomWebApplicationFactory<Program> _factory;
 
         private static string Uri = "/api/participant";
-        public ParticipantControllerTests(CustomWebApplicationFactory<Startup> factory)
+        public ParticipantControllerTests(CustomWebApplicationFactory<Program> factory)
         {
             _factory = factory;
         }

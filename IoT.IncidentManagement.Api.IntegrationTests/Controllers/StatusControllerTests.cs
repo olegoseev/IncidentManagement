@@ -3,6 +3,8 @@ using IoT.IncidentManagement.Application.Features.Statuses.Commands.Create;
 using IoT.IncidentManagement.Application.Features.Statuses.Commands.Update;
 using IoT.IncidentManagement.Application.Models;
 
+using Microsoft.VisualStudio.TestPlatform.TestHost;
+
 using Newtonsoft.Json;
 
 using System;
@@ -16,12 +18,12 @@ using Xunit;
 
 namespace IoT.IncidentManagement.Api.IntegrationTests.Controllers
 {
-    public class StatusControllerTests : IClassFixture<CustomWebApplicationFactory<Startup>>
+    public class StatusControllerTests : IClassFixture<CustomWebApplicationFactory<Program>>
     {
-        private readonly CustomWebApplicationFactory<Startup> _factory;
+        private readonly CustomWebApplicationFactory<Program> _factory;
 
         private static string Uri = "/api/status";
-        public StatusControllerTests(CustomWebApplicationFactory<Startup> factory)
+        public StatusControllerTests(CustomWebApplicationFactory<Program> factory)
         {
             _factory = factory;
         }

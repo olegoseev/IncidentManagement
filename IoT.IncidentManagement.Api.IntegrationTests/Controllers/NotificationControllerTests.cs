@@ -5,6 +5,8 @@ using IoT.IncidentManagement.Application.Features.Notifications.Commands.Update;
 using IoT.IncidentManagement.Application.Models;
 using IoT.IncidentManagement.Domain.Enums;
 
+using Microsoft.VisualStudio.TestPlatform.TestHost;
+
 using Newtonsoft.Json;
 
 using System;
@@ -18,13 +20,13 @@ using Xunit;
 
 namespace IoT.IncidentManagement.Api.IntegrationTests.Controllers
 {
-    public class NotificationControllerTests : IClassFixture<CustomWebApplicationFactory<Startup>>
+    public class NotificationControllerTests : IClassFixture<CustomWebApplicationFactory<Program>>
     {
-        private readonly CustomWebApplicationFactory<Startup> factory;
+        private readonly CustomWebApplicationFactory<Program> factory;
 
         private readonly string Uri = "/api/Notification";
 
-        public NotificationControllerTests(CustomWebApplicationFactory<Startup> factory)
+        public NotificationControllerTests(CustomWebApplicationFactory<Program> factory)
         {
             this.factory = factory;
         }
