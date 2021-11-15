@@ -10,18 +10,25 @@
 
 .roboto-r {
     font-weight: 400;
-    font-family: 'Roboto Mono', monospace;
+    //font-family: 'Roboto Mono', monospace;
+    font-family:Verdana;
 }
 
 .main-grid {
+    font-family: Verdana;
+    width: 832px;
+    border: thick double #000;
+    border-collapse: collapse;
     grid-template-columns: 824px;
     grid-template-rows: auto;
+    row-gap: 9px;
     grid-template-areas:
         "header"
         "information"
         "description"
         "impact"
         "participant"
+        "actions"
         "note";
 }
 
@@ -45,14 +52,17 @@
     .main-grid .note-area {
         grid-area: note;
     }
+    .main-grid .inc-actions {
+        grid-area: actions;
+    }
 
 .incident-grid {
-    grid-template-columns: repeat(8, 102px);
+    grid-template-columns: repeat(8, 88px);
     grid-template-rows: repeat(5, 54px)
 }
 
     .incident-grid .case {
-        grid-column: 2 / 4;
+        grid-column: 1 / 4;
         grid-row: 1;
         align-self: center;
     }
@@ -64,7 +74,7 @@
     }
 
     .incident-grid .start {
-        grid-column: 2 / 4;
+        grid-column: 1 / 4;
         grid-row: 2;
         align-self: center;
     }
@@ -76,7 +86,7 @@
     }
 
     .incident-grid .end {
-        grid-column: 2 / 4;
+        grid-column: 1 / 4;
         grid-row: 3;
         align-self: center;
     }
@@ -88,7 +98,7 @@
     }
 
     .incident-grid .severity {
-        grid-column: 2 / 4;
+        grid-column: 1 / 4;
         grid-row: 4;
         align-self: center;
     }
@@ -100,7 +110,7 @@
     }
 
     .incident-grid .bridge {
-        grid-column: 2 / 4;
+        grid-column: 1 / 4;
         grid-row: 5;
         align-self: center;
     }
@@ -110,3 +120,9 @@
         grid-row: 5;
         align-self: center;
     }
+
+.record-time {
+    font-size: .95rem;
+    font-family: 'Arial Narrow', Arial, sans-serif;
+    margin: auto;
+}

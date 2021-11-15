@@ -1,0 +1,21 @@
+﻿.cf-container {
+    border-top: 1px solid #808080;
+    border-bottom: 1px solid #808080;
+}
+
+.cf-header {
+    border-top: 1px solid #808080;
+    border-bottom: 1px solid #808080;
+    padding: .2rem 1.2rem;
+}
+
+    .cf-header p {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 1rem;
+        margin: auto;
+        font-weight: bold;
+    }
+
+.cf-content {
+    border-bottom: 1px solid #808080;
+}

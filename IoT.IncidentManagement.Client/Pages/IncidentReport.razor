@@ -1,11 +1,9 @@
 ﻿@page "/report/{IncidentId:int}"
 
-
-
-<section class="d-grid main-grid border-1">
+<section class="d-grid main-grid mt-4">
     <div class="container h-area">
         <div class="row">
-            <h1 class="roboto-b">Incident Report</h1>
+            <h4 class="roboto-b">Incident Report</h4>
         </div>
     </div>
     @if (incident is null)
@@ -14,33 +12,66 @@
     }
     else
     {
-
-        <section class="inc-area d-grid incident-grid border">
-            <div class="case roboto-r">Case number</div>
-            <div class="case-num">@incident.IncidentCase</div>
-            <div class="start roboto-r">Start time</div>
-            <div class="start-time">@incident.StartTime</div>
-            <div class="end roboto-r">Resolved time</div>
-            <div class="end-time">@incident.EndTime</div>
-            <div class="severity roboto-r">Severity</div>
-            <div class="severity-level">@incident.Severity.IncidentSeverity</div>
-            <div class="bridge roboto-r">Troubleshooting bridge</div>
-            <div class="bridge-type">@incident.Bridge.BridgeType</div>
+        <section class="inc-area">
+            <CardForm Title="Incident Information">
+                <div class="d-grid incident-grid ms-2">
+                    <div class="case">Case number</div>
+                    <div class="case-num">@incident.IncidentCase</div>
+                    <div class="start">Start time</div>
+                    <div class="start-time">@incident.StartTime</div>
+                    <div class="end">Resolved time</div>
+                    <div class="end-time">@incident.EndTime</div>
+                    <div class="severity">Severity</div>
+                    <div class="severity-level">@incident.Severity.IncidentSeverity</div>
+                    <div class="bridge">Troubleshooting bridge</div>
+                    <div class="bridge-type">@incident.Bridge.BridgeType</div>
+                </div>
+            </CardForm>
         </section>
-        <section class="desc-area border">
-            <p>@incident.Description</p>
+        <section class="desc-area">
+            <CardForm Title="Description">
+                <div class="m-2">
+                    @incident.Description
+                </div>
+            </CardForm>
         </section>
-        <section class="imp-area border">
-            <p>@incident.CustomerImpact</p>
+        <section class="imp-area">
+            <CardForm Title="Customer impact">
+                <div class="m-2">
+                    @incident.CustomerImpact
+                </div>
+            </CardForm>
         </section>
-        <section class="part-area border">
-            <p>@participant</p>
+        <section class="part-area">
+            <CardForm Title="Bridge participants">
+                <div class="m-2">
+                    <p>@participant.Group</p>
+                </div>
+            </CardForm>
         </section>
-        <section>
-            <p>@closureAction.ToDoList</p>
+        <section class="inc-actions">
+            <CardForm Title="Incident Closure Actions">
+                <div class="m-2">
+                    <p>@closureAction.ToDoList</p>
+                </div>
+            </CardForm>
         </section>
-        <section class="note-area border">
-            <p>@incidentNotes</p>
+        <section class="note-area">
+            <CardForm Title="Bridge notes">
+                <div class="container">
+                    <div class="row">
+                        @foreach (var note in notes)
+                        {
+                            <div class="col-3">
+                                <span class="record-time align-middle">@note.RecordTime</span>
+                            </div>
+                            <div class="col-9">
+                                <p>@note.Record</p>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </CardForm>
         </section>
     }
 </section>

@@ -8,9 +8,7 @@ using MediatR;
 
 using Microsoft.AspNetCore.Components;
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -29,9 +27,9 @@ namespace IoT.IncidentManagement.Client.Pages
 
         #region Private fields
         private Incident incident;
-        private string incidentNotes;
         private Participant participant;
         private ClosureAction closureAction;
+        private IEnumerable<Note> notes;
         #endregion
 
         protected override async Task OnInitializedAsync()
@@ -40,18 +38,7 @@ namespace IoT.IncidentManagement.Client.Pages
             participant = await Mediator.Send(new GetParticipantsRequest { IncidentId = IncidentId });
             closureAction = (await Mediator.Send(new GetIncidentClosureActionsRequest { IncidentId = IncidentId }))
                                 ?? new ClosureAction { IncidentId = IncidentId, ToDoList = "No Actions" };
-            var notes = await Mediator.Send(new GetIncidentNotesRequest { IncidentId = IncidentId });
-
-            var strBilder = new StringBuilder();
-            foreach (var note in notes)
-            {
-                strBilder.Append($"{note.RecordTime} {note.Record}");
-            }
-            incidentNotes = strBilder.ToString();
-
+            notes = await Mediator.Send(new GetIncidentNotesRequest { IncidentId = IncidentId });
         }
-
-
-
     }
 }
