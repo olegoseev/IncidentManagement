@@ -6,7 +6,9 @@
 .cf-header {
     border-top: 1px solid #808080;
     border-bottom: 1px solid #808080;
+    border-right: 2px solid #000;
     padding: .2rem 1.2rem;
+    background-color: #e8e8e8;
 }
 
     .cf-header p {

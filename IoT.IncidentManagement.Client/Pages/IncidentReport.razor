@@ -58,7 +58,14 @@
         </section>
         <section class="note-area">
             <CardForm Title="Bridge notes">
-                <div class="container">
+                <div class="notes-grid d-grid">
+                    @foreach (var note in notes)
+                    {
+                         <p class="record-time mx-2">@note.RecordTime</p>
+                         <p class="record-time ms-2">@note.Record</p>
+                    }
+                </div>
+@*                <div class="container">
                     <div class="row">
                         @foreach (var note in notes)
                         {
@@ -70,7 +77,7 @@
                             </div>
                         }
                     </div>
-                </div>
+                </div>*@
             </CardForm>
         </section>
     }

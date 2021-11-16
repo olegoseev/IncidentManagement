@@ -58,7 +58,7 @@
 
 .incident-grid {
     grid-template-columns: repeat(8, 88px);
-    grid-template-rows: repeat(5, 54px)
+    grid-template-rows: repeat(5, 42px)
 }
 
     .incident-grid .case {
@@ -68,7 +68,7 @@
     }
 
     .incident-grid .case-num {
-        grid-column: 5 / -1;
+        grid-column: 4 / -1;
         grid-row: 1;
         align-self: center;
     }
@@ -80,7 +80,7 @@
     }
 
     .incident-grid .start-time {
-        grid-column: 5 / -1;
+        grid-column: 4 / -1;
         grid-row: 2;
         align-self: center;
     }
@@ -92,7 +92,7 @@
     }
 
     .incident-grid .end-time {
-        grid-column: 5 / -1;
+        grid-column: 4 / -1;
         grid-row: 3;
         align-self: center;
     }
@@ -104,7 +104,7 @@
     }
 
     .incident-grid .severity-level {
-        grid-column: 5 / -1;
+        grid-column: 4 / -1;
         grid-row: 4;
         align-self: center;
     }
@@ -116,13 +116,22 @@
     }
 
     .incident-grid .bridge-type {
-        grid-column: 5 / -1;
+        grid-column: 4 / -1;
         grid-row: 5;
         align-self: center;
     }
 
+.notes-grid {
+    grid-template-columns: auto 1fr;
+    row-gap: .18rem;
+}
+
 .record-time {
     font-size: .95rem;
     font-family: 'Arial Narrow', Arial, sans-serif;
+    margin: auto;
+}
+
+.record-note {
     margin: auto;
 }
