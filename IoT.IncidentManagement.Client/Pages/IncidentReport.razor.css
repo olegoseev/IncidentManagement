@@ -34,7 +34,6 @@
 
     .main-grid .h-area {
         grid-area: header;
-        justify-self: center;      
     }
 
     .main-grid .inc-area {
@@ -43,7 +42,7 @@
     .main-grid .desc-area {
         grid-area: description;
     }
-    .main-grid .imp-area{
+    .main-grid .imp-area {
         grid-area: impact;
     }
     .main-grid .part-area {
