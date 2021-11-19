@@ -1,11 +1,8 @@
 ﻿@page "/report/{IncidentId:int}"
 
 <section class="d-grid main-grid mt-4">
-    <div class="container h-area">
-        <div class="row">
-            <h4 class="roboto-b">Incident Report</h4>
-        </div>
-    </div>
+            <h4 class="h-area m-0 roboto-b">Incident Report</h4>
+
     @if (incident is null)
     {
         <Spinner />

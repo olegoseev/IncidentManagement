@@ -34,7 +34,7 @@
 
     .main-grid .h-area {
         grid-area: header;
-        justify-self: center;      
+        place-self: center;
     }
 
     .main-grid .inc-area {
